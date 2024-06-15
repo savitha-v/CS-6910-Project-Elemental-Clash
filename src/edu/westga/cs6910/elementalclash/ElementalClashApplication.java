@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  */
 public class ElementalClashApplication extends Application {
 
-	public static final String GUI_FXML = "view/Casino.fxml";
+	public static final String GUI_FXML = "view/ElementalClash.fxml";
 	public static final String APP_NAME = "CS6910 Card Game";
 
 	/**
