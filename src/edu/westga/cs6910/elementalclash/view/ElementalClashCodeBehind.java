@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
 /**
- * Elemental Clash defines the "controller" for elementalclash.fxml.
+ * Elemental Clash defines the "controller" for ElementalClash.fxml.
  * 
  * @author CS6910
  * @version Summer 2024
