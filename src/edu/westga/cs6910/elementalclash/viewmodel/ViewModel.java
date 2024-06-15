@@ -5,22 +5,21 @@ import edu.westga.cs6910.elementalclash.model.Rank;
 import edu.westga.cs6910.elementalclash.model.Suit;
 
 /**
- * The Class CasinoViewModel.
+ * The Class ViewModel.
  * 
  * @author CS6910
  * @version Summer 2024
  */
 public class ViewModel {
 
-	/**
-	 * Deals the Ace of Spades.
-	 * 
-	 * @precondition none
-	 * @postcondition none
-	 * @return the Ace of Spades
-	 */
-	// TODO
-	public Card dealCard() {
-		return new Card(Rank.ACE, Suit.SPADES);
-	}
+    /**
+     * Deals a specific card.
+     * 
+     * @precondition none
+     * @postcondition none
+     * @return the dealt card
+     */
+    public Card dealCard() {
+        return new Card(Rank.COMMON_1, Suit.FIRE);
+    }
 }
