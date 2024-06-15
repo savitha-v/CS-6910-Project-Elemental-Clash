@@ -7,30 +7,33 @@ package edu.westga.cs6910.elementalclash.model;
  * @version Summer 2024
  */
 public enum Rank {
+    // Common ranks
+    COMMON_1("Common 1"),
+    COMMON_2("Common 2"),
+    COMMON_3("Common 3"),
+    COMMON_4("Common 4"),
+    COMMON_5("Common 5"),
+    COMMON_6("Common 6"),
+    COMMON_7("Common 7"),
 
-	ACE(1);
+    // Rare ranks
+    RARE_8("Rare 8"),
+    RARE_9("Rare 9"),
+    RARE_10("Rare 10"),
+    RARE_11("Rare 11"),
 
-	private int value;
+    // Legendary ranks
+    LEGENDARY_12("Legendary 12"),
+    LEGENDARY_13("Legendary 13");
 
-	/**
-	 * Creates the given rank with the specified value.
-	 * 
-	 * @precondition none
-	 * @postcondition getValue() == value
-	 * @param value the numeric value of this rank
-	 */
-	Rank(int value) {
-		this.value = value;
-	}
+    private final String displayName;
 
-	/**
-	 * Returns the numeric value of this rank.
-	 * 
-	 * @precondition none
-	 * @postcondition none
-	 * @return the numeric value of this rank
-	 */
-	public int getValue() {
-		return this.value;
-	}
+    Rank(String displayName) {
+        this.displayName = displayName;
+    }
+
+    @Override
+    public String toString() {
+        return this.displayName;
+    }
 }
