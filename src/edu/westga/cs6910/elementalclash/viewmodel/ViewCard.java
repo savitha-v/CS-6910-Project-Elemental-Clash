@@ -93,7 +93,7 @@ public class ViewCard {
         FileInputStream input = null;
         try {
             String imagePath = "file:path/to/images/" + this.card.getSuit().toString().toLowerCase() + "_"
-            		+ this.card.getRank().toString().toLowerCase().replace(" ", "_") + ".png";
+            		+ this.card.getRank().toString().toLowerCase().replace(" ", "_") + ".jpg";
             input = new FileInputStream(imagePath);
             Image image = new Image(input);
             ImagePattern pattern = new ImagePattern(image);
