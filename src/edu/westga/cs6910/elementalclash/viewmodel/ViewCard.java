@@ -23,7 +23,7 @@ public class ViewCard {
 
     public static final double CARD_WIDTH = 110;
     public static final double CARD_HEIGHT = 170;
-    public static final String CARD_BACK_IMAGE = "file:path/to/images/wolfie.jpg";
+    public static final String CARD_BACK_IMAGE = "/images/wolfie.jpg";
     public static final double CARD_ARC = 20;
 
     private Card card;
@@ -92,7 +92,7 @@ public class ViewCard {
 
         FileInputStream input = null;
         try {
-            String imagePath = "file:path/to/images/" + this.card.getSuit().toString().toLowerCase() + "_"
+            String imagePath = "/images/" + this.card.getSuit().toString().toLowerCase() + "_"
             		+ this.card.getRank().toString().toLowerCase().replace(" ", "_") + ".jpg";
             input = new FileInputStream(imagePath);
             Image image = new Image(input);
