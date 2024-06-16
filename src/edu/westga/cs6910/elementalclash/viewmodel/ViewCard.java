@@ -1,7 +1,7 @@
-package edu.westga.cs6910.elementalclash.viewmodel;
+package edu.westga.cs6910.elementalclash.view;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.io.IOException;
 
 import edu.westga.cs6910.elementalclash.model.Card;
@@ -16,14 +16,13 @@ import javafx.scene.shape.Shape;
 /**
  * The class ViewCard.
  * 
- * @author CS6910
  * @version Summer 2024
  */
 public class ViewCard {
 
     public static final double CARD_WIDTH = 110;
     public static final double CARD_HEIGHT = 170;
-    public static final String CARD_BACK_IMAGE = "/images/wolfie.jpeg";
+    public static final String CARD_BACK_IMAGE = "/main/resources/images/wolfie.jpeg";
     public static final double CARD_ARC = 20;
 
     private Card card;
@@ -64,15 +63,18 @@ public class ViewCard {
         Pane pane = new Pane();
         Shape shape = this.drawRectangle();
 
-        FileInputStream input = null;
+        InputStream input = null;
         try {
-            input = new FileInputStream(CARD_BACK_IMAGE);
+            input = getClass().getResourceAsStream(CARD_BACK_IMAGE);
+            if (input == null) {
+                throw new FileNotFoundException("Image file not found: " + CARD_BACK_IMAGE);
+            }
             Image image = new Image(input);
             ImagePattern pattern = new ImagePattern(image);
             shape.setFill(pattern);
             pane.getChildren().add(shape);
         } catch (FileNotFoundException ex) {
-            System.err.println("Image file not found.");
+            System.err.println(ex.getMessage());
         } finally {
             if (input != null) {
                 try {
@@ -90,17 +92,20 @@ public class ViewCard {
         Pane pane = new Pane();
         Shape shape = this.drawRectangle();
 
-        FileInputStream input = null;
+        InputStream input = null;
         try {
-            String imagePath = "/images/" + this.card.getSuit().toString().toLowerCase() + "_"
-            		+ this.card.getRank().toString().toLowerCase().replace(" ", "_") + ".jpeg";
-            input = new FileInputStream(imagePath);
+            String imagePath = "/main/resources/images/" + this.card.getSuit().toString().toLowerCase() + "_" +
+                               this.card.getRank().toString().toLowerCase().replace(" ", "_") + ".jpeg";
+            input = getClass().getResourceAsStream(imagePath);
+            if (input == null) {
+                throw new FileNotFoundException("Image file not found: " + imagePath);
+            }
             Image image = new Image(input);
             ImagePattern pattern = new ImagePattern(image);
             shape.setFill(pattern);
             pane.getChildren().add(shape);
         } catch (FileNotFoundException ex) {
-            System.err.println("Image file not found.");
+            System.err.println(ex.getMessage());
         } finally {
             if (input != null) {
                 try {
