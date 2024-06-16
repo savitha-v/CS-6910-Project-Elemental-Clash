@@ -1,18 +1,17 @@
 package edu.westga.cs6910.elementalclash.model;
 
-import edu.westga.cs6910.elementalclash.resources.ExceptionMessages;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import edu.westga.cs6910.elementalclash.resources.ExceptionMessages;
 
 /**
  * The Deck class.
  * 
  * Represents a deck of cards in the Elemental Clash game.
  * 
- * @author CS6910
- * @version Summer 2024
+ * @version 06/16/2024
+ * @author Savitha Venkatesh
  */
 public class Deck {
 
@@ -20,6 +19,9 @@ public class Deck {
 
     /**
      * Creates a new deck of 52 cards.
+     * 
+     * @precondition none
+     * @postcondition this.cards.size() == 52
      */
     public Deck() {
         this.cards = new ArrayList<>();
@@ -38,6 +40,7 @@ public class Deck {
      * @postcondition deck size is decreased by one
      * 
      * @return the drawn card
+     * @throws IllegalStateException if the deck is empty
      */
     public Card drawCard() {
         if (this.cards.isEmpty()) {
@@ -65,6 +68,7 @@ public class Deck {
      * @postcondition deck size is increased by one
      * 
      * @param card the card to add
+     * @throws IllegalArgumentException if card is null
      */
     public void addCard(Card card) {
         if (card == null) {

@@ -8,8 +8,8 @@ import edu.westga.cs6910.elementalclash.resources.ExceptionMessages;
  * Represents a card in the Elemental Clash game with a specific rank and suit.
  * Each card has a rank (common, rare, legendary) and a suit (fire, earth, air, water).
  * 
- * @author CS6910
- * @version Summer 2024
+ * @version 06/16/2024
+ * @author Savitha Venkatesh
  */
 public class Card {
 
@@ -41,6 +41,7 @@ public class Card {
      * 
      * @precondition none
      * @postcondition none
+     * 
      * @return the rank
      */
     public Rank getRank() {
@@ -52,12 +53,21 @@ public class Card {
      * 
      * @precondition none
      * @postcondition none
+     * 
      * @return the suit
      */
     public Suit getSuit() {
         return this.suit;
     }
 
+    /**
+     * Returns a string representation of the card.
+     * 
+     * @precondition none
+     * @postcondition none
+     * 
+     * @return the string representation of the card
+     */
     @Override
     public String toString() {
         return this.rank + " of " + this.suit;

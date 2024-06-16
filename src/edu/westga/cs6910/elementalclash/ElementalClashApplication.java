@@ -11,8 +11,8 @@ import javafx.stage.Stage;
  * ElementalClashApplication extends the JavaFX Application class to build the GUI and
  * start program execution.
  * 
- * @author CS6910
- * @version Summer 2024
+ * @version 06/16/2024
+ * @author Savitha Venkatesh
  */
 public class ElementalClashApplication extends Application {
 
@@ -29,6 +29,14 @@ public class ElementalClashApplication extends Application {
 		super();
 	}
 
+	/**
+     * Starts the JavaFX application.
+     * 
+     * @precondition primaryStage != null
+     * @postcondition primaryStage is set up and shown
+     * 
+     * @param primaryStage the primary stage for this application
+     */
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -42,6 +50,14 @@ public class ElementalClashApplication extends Application {
 		}
 	}
 
+	/**
+	 * Loads the GUI from the FXML file.
+	 *
+	 * @precondition none
+	 * @postcondition none
+	 * @return the loaded Pane
+	 * @throws IOException if the FXML file cannot be loaded
+	 */
 	private Pane loadGui() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource(GUI_FXML));

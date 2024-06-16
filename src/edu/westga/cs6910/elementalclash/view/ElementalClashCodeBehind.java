@@ -15,8 +15,8 @@ import javafx.scene.paint.Color;
 /**
  * Elemental Clash defines the "controller" for ElementalClash.fxml.
  * 
- * @author CS6910
- * @version Summer 2024
+ * @version 06/16/2024
+ * @author Savitha Venkatesh
  */
 public class ElementalClashCodeBehind {
 
@@ -53,6 +53,12 @@ public class ElementalClashCodeBehind {
 		this.initializeUI();
 	}
 
+	/**
+     * Initializes the UI.
+     * 
+     * @precondition none
+     * @postcondition none
+     */
 	private void initializeUI() {
 		BackgroundFill fill = new BackgroundFill(ELEMENTAL_CLASH_TABLE_BACKGROUND, CornerRadii.EMPTY, Insets.EMPTY);
 		Background background = new Background(fill);
@@ -60,6 +66,12 @@ public class ElementalClashCodeBehind {
 		this.displayCards();
 	}
 
+	/**
+     * Displays the cards.
+     * 
+     * @precondition none
+     * @postcondition none
+     */
 	private void displayCards() {
 		this.table.getChildren().clear();
 		Card card = this.viewModel.dealCard();

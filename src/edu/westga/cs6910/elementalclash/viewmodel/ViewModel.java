@@ -7,8 +7,8 @@ import edu.westga.cs6910.elementalclash.model.Suit;
 /**
  * The Class ViewModel.
  * 
- * @author CS6910
- * @version Summer 2024
+ * @version 06/16/2024
+ * @author Savitha Venkatesh
  */
 public class ViewModel {
 

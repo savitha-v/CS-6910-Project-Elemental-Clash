@@ -16,8 +16,8 @@ import javafx.scene.shape.Shape;
 /**
  * The class ViewCard.
  * 
- * @author CS6910
- * @version Summer 2024
+ * @version 06/16/2024
+ * @author Savitha Venkatesh
  */
 public class ViewCard {
 
@@ -60,6 +60,13 @@ public class ViewCard {
         return this.designBackOfCard();
     }
 
+    /**
+     * Designs the back of the card.
+     * 
+     * @precondition none
+     * @postcondition none
+     * @return the back of the card
+     */
     private Node designBackOfCard() {
         Pane pane = new Pane();
         Shape shape = this.drawRectangle();
@@ -86,6 +93,13 @@ public class ViewCard {
         return pane;
     }
 
+    /**
+     * Designs the front of the card.
+     * 
+     * @precondition none
+     * @postcondition none
+     * @return the front of the card
+     */
     private Node designFrontOfCard() {
         Pane pane = new Pane();
         Shape shape = this.drawRectangle();
@@ -114,6 +128,13 @@ public class ViewCard {
         return pane;
     }
 
+    /**
+     * Draws a rectangle with predefined properties.
+     * 
+     * @precondition none
+     * @postcondition none
+     * @return the drawn rectangle
+     */
     private Rectangle drawRectangle() {
         Rectangle shape = new Rectangle();
         shape.setWidth(CARD_WIDTH);
