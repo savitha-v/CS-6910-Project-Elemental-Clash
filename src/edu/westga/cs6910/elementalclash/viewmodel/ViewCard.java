@@ -1,4 +1,4 @@
-package edu.westga.cs6910.elementalclash.view;
+package edu.westga.cs6910.elementalclash.viewmodel;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
