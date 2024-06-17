@@ -33,7 +33,7 @@ public class ViewModel {
     	//return new Card(Rank.LEGENDARY_13, Suit.WATER);
     	
         //return new Card(Rank.COMMON_1, Suit.EARTH);
-    	//return new Card(Rank.RARE_9, Suit.EARTH);
-    	return new Card(Rank.LEGENDARY_13, Suit.EARTH);
+    	return new Card(Rank.RARE_9, Suit.EARTH);
+    	//return new Card(Rank.LEGENDARY_13, Suit.EARTH);
     }
 }
