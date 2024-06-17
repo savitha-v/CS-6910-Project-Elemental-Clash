@@ -20,14 +20,6 @@ public class ViewModel {
      * @return the dealt card
      */
     public Card dealCard() {
-        //return new Card(Rank.COMMON_1, Suit.AIR);
-    	//return new Card(Rank.RARE_9, Suit.AIR);
-    	//return new Card(Rank.LEGENDARY_13, Suit.AIR);
-    	
-        //return new Card(Rank.COMMON_1, Suit.FIRE);
-    	//return new Card(Rank.RARE_9, Suit.FIRE);
-    	//return new Card(Rank.LEGENDARY_13, Suit.FIRE);
-    	
-        return new Card(Rank.COMMON_1, Suit.WATER);
+        return new Card(Rank.COMMON_1, Suit.AIR);
     }
 }
