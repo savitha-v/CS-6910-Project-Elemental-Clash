@@ -28,8 +28,6 @@ public class ViewModel {
     	//return new Card(Rank.RARE_9, Suit.FIRE);
     	//return new Card(Rank.LEGENDARY_13, Suit.FIRE);
     	
-        //return new Card(Rank.COMMON_1, Suit.WATER);
-    	return new Card(Rank.RARE_9, Suit.WATER);
-    	//return new Card(Rank.LEGENDARY_13, Suit.WATER);
+        return new Card(Rank.COMMON_1, Suit.WATER);
     }
 }
