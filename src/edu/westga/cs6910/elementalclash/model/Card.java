@@ -8,7 +8,7 @@ import edu.westga.cs6910.elementalclash.resources.ExceptionMessages;
  * Represents a card in the Elemental Clash game with a specific rank and suit.
  * Each card has a rank (common, rare, legendary) and a suit (fire, earth, air, water).
  * 
- * @version 06/16/2024
+ * @version 06/23/2024
  * @author Savitha Venkatesh
  */
 public class Card {
