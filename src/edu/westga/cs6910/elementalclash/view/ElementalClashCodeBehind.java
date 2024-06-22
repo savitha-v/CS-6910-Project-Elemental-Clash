@@ -16,9 +16,9 @@ import javafx.scene.paint.Color;
 import java.util.List;
 
 /**
- * Elemental Clash defines the "controller" for ElementalClash.fxml.
+ * ElementalClashCodeBehind defines the "controller" for ElementalClash.fxml.
  * 
- * @version 06/16/2024
+ * @version 06/23/2024
  * @author Savitha Venkatesh
  */
 public class ElementalClashCodeBehind {
@@ -44,7 +44,7 @@ public class ElementalClashCodeBehind {
     private HBox computerTableBack;
 
     /**
-     * Instantiates a new elementalclash-code-behind.
+     * Instantiates a new ElementalClashCodeBehind.
      * 
      * @precondition none
      * @postcondition none
@@ -80,10 +80,10 @@ public class ElementalClashCodeBehind {
     }
 
     /**
-     * Displays the cards.
+     * Displays the cards in the human and computer players' hands.
      * 
      * @precondition none
-     * @postcondition none
+     * @postcondition the cards are displayed in the UI
      */
     private void displayCards() {
         this.humanTableFront.getChildren().clear();
@@ -111,10 +111,10 @@ public class ElementalClashCodeBehind {
     }
 
     /**
-     * Handles the play round action.
+     * Handles the play round action, updates the UI, and displays round results.
      * 
      * @precondition none
-     * @postcondition none
+     * @postcondition the round is played and results are displayed
      */
     @FXML
     private void handlePlayRound() {
