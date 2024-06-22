@@ -44,4 +44,8 @@ public class ViewModel {
     public List<Card> getComputerHand() {
         return this.game.getComputerPlayer().getHand();
     }
+    
+    public String getLastRoundResult() {
+        return this.game.getLastRoundResult();
+    }
 }

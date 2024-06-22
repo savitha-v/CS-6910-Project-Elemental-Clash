@@ -93,4 +93,12 @@ public class Game {
     public int getComputerLifePoints() {
         return this.computerPlayer.getLifePoints();
     }
+    
+    public Play getHumanPlayer() {
+        return this.humanPlayer;
+    }
+
+    public Play getComputerPlayer() {
+        return this.computerPlayer;
+    }
 }

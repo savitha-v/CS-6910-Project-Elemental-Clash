@@ -1,9 +1,5 @@
 package edu.westga.cs6910.elementalclash.viewmodel;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import edu.westga.cs6910.elementalclash.model.Card;
 import edu.westga.cs6910.elementalclash.resources.ExceptionMessages;
 import javafx.scene.Node;
@@ -12,6 +8,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * The class ViewCard.
@@ -79,7 +79,7 @@ public class ViewCard {
             shape.setFill(pattern);
             pane.getChildren().add(shape);
         } catch (FileNotFoundException ex) {
-            System.err.println("Image file not found.");
+            System.err.println("Image file not found: " + CARD_BACK_IMAGE);
         } finally {
             if (input != null) {
                 try {
@@ -107,14 +107,15 @@ public class ViewCard {
         FileInputStream input = null;
         try {
             String imagePath = "images/" + this.card.getSuit().toString().toLowerCase() + "_"
-            		+ this.card.getRank().toString().toLowerCase().replace(" ", "_") + ".jpg";
+                + this.card.getRank().toString().toLowerCase().replace(" ", "_") + ".jpg";
+            System.out.println("Loading image: " + imagePath);
             input = new FileInputStream(imagePath);
             Image image = new Image(input);
             ImagePattern pattern = new ImagePattern(image);
             shape.setFill(pattern);
             pane.getChildren().add(shape);
         } catch (FileNotFoundException ex) {
-            System.err.println("Image file not found.");
+            System.err.println("Image file not found: " + ex.getMessage());
         } finally {
             if (input != null) {
                 try {
