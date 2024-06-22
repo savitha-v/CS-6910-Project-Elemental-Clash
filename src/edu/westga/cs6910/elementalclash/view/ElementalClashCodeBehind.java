@@ -19,7 +19,7 @@ import java.util.List;
  * Elemental Clash defines the "controller" for ElementalClash.fxml.
  * 
  * @version 06/16/2024
- * @autor Savitha Venkatesh
+ * @author Savitha Venkatesh
  */
 public class ElementalClashCodeBehind {
 
@@ -122,7 +122,7 @@ public class ElementalClashCodeBehind {
         this.displayCards();
 
         String roundResult = this.viewModel.getLastRoundResult();
-        System.out.println(roundResult);  // Print the round result to the console
+        System.out.println(roundResult); 
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Round Result");
