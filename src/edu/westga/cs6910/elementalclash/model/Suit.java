@@ -9,35 +9,32 @@ package edu.westga.cs6910.elementalclash.model;
  * @author Savitha Venkatesh
  */
 public enum Suit {
-    FIRE("Fire"),
-    EARTH("Earth"),
-    AIR("Air"),
-    WATER("Water");
+	FIRE("Fire"), EARTH("Earth"), AIR("Air"), WATER("Water");
 
-    private final String displayName;
+	private final String displayName;
 
-    /**
-     * Constructs a new Suit with the specified display name.
-     * 
-     * @precondition displayName != null
-     * @postcondition this.displayName == displayName
-     * 
-     * @param displayName the display name of the suit
-     */
-    Suit(String displayName) {
-        this.displayName = displayName;
-    }
+	/**
+	 * Constructs a new Suit with the specified display name.
+	 * 
+	 * @precondition displayName != null
+	 * @postcondition this.displayName == displayName
+	 * 
+	 * @param displayName the display name of the suit
+	 */
+	Suit(String displayName) {
+		this.displayName = displayName;
+	}
 
-    /**
-     * Returns the display name of the suit.
-     * 
-     * @precondition none
-     * @postcondition none
-     * 
-     * @return the display name of the suit
-     */
-    @Override
-    public String toString() {
-        return this.displayName;
-    }
+	/**
+	 * Returns the display name of the suit.
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return the display name of the suit
+	 */
+	@Override
+	public String toString() {
+		return this.displayName;
+	}
 }

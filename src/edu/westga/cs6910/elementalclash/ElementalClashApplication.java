@@ -8,8 +8,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
- * ElementalClashApplication extends the JavaFX Application class to build the GUI and
- * start program execution.
+ * ElementalClashApplication extends the JavaFX Application class to build the
+ * GUI and start program execution.
  * 
  * @version 06/16/2024
  * @author Savitha Venkatesh
@@ -30,13 +30,13 @@ public class ElementalClashApplication extends Application {
 	}
 
 	/**
-     * Starts the JavaFX application.
-     * 
-     * @precondition primaryStage != null
-     * @postcondition primaryStage is set up and shown
-     * 
-     * @param primaryStage the primary stage for this application
-     */
+	 * Starts the JavaFX application.
+	 * 
+	 * @precondition primaryStage != null
+	 * @postcondition primaryStage is set up and shown
+	 * 
+	 * @param primaryStage the primary stage for this application
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		try {

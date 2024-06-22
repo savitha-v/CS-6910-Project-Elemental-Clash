@@ -10,7 +10,7 @@ package edu.westga.cs6910.elementalclash.resources;
  */
 public class ExceptionMessages {
 
-    public static final String INVALID_RANK = "Invalid card rank.";
-    public static final String INVALID_SUIT = "Invalid suit.";
-    public static final String NULL_CARD = "Null card";
+	public static final String INVALID_RANK = "Invalid card rank.";
+	public static final String INVALID_SUIT = "Invalid suit.";
+	public static final String NULL_CARD = "Null card";
 }
