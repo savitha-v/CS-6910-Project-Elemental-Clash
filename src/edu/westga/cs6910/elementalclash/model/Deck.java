@@ -10,7 +10,7 @@ import edu.westga.cs6910.elementalclash.resources.ExceptionMessages;
  * 
  * Represents a deck of cards in the Elemental Clash game.
  * 
- * @version 06/16/2024
+ * @version 06/23/2024
  * @author Savitha Venkatesh
  */
 public class Deck {
