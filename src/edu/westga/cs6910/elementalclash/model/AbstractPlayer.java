@@ -8,8 +8,8 @@ import java.util.List;
  * Clash game. It includes common attributes and methods for both human and
  * computer players.
  * 
- * @version 06/23/2024
- * @autor Savitha Venkatesh
+ * @version 06/30/2024
+ * @author Savitha Venkatesh
  */
 public abstract class AbstractPlayer implements Play {
     private String name;
