@@ -8,6 +8,7 @@ package edu.westga.cs6910.elementalclash.model;
  * @author Savitha Venkatesh
  */
 public class HumanPlayer extends AbstractPlayer {
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Constructs a new HumanPlayer with the specified name and deck.

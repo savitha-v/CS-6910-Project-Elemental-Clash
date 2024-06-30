@@ -8,6 +8,7 @@ package edu.westga.cs6910.elementalclash.model;
  * @author Savitha Venkatesh
  */
 public class ComputerPlayer extends AbstractPlayer {
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Constructs a new ComputerPlayer with the specified name and deck.
