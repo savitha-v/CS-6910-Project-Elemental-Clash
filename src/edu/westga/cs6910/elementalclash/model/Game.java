@@ -8,7 +8,7 @@ import java.io.Serializable;
  * result of each round.
  * 
  * @version 06/30/2024
- * @author Savitha Venkatesh
+ * @autor Savitha Venkatesh
  */
 public class Game implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -21,14 +21,17 @@ public class Game implements Serializable {
     /**
      * Constructs a new Game with the specified human and computer players and deck.
      * 
-     * @param human    the human player
+     * @param human the human player
      * @param computer the computer player
-     * @param deck     the deck of cards
+     * @param deck the deck of cards
      * @precondition human != null && computer != null && deck != null
      * @postcondition this.humanPlayer == human && this.computerPlayer == computer
      *                && this.deck == deck
      */
     public Game(Play human, Play computer, Deck deck) {
+        if (human == null || computer == null || deck == null) {
+            throw new IllegalArgumentException("Players and deck cannot be null.");
+        }
         this.humanPlayer = human;
         this.computerPlayer = computer;
         this.deck = deck;
@@ -69,28 +72,36 @@ public class Game implements Serializable {
      *                accordingly
      */
     public void playRound() {
-        Card humanCard = this.humanPlayer.drawCard();
-        Card computerCard = this.computerPlayer.drawCard();
+        try {
+            if (this.deck.size() < 2) {
+                this.deck.refillDeck();
+            }
+            Card humanCard = this.humanPlayer.drawCard();
+            Card computerCard = this.computerPlayer.drawCard();
 
-        int result = this.determineWinner(humanCard, computerCard);
+            int result = this.determineWinner(humanCard, computerCard);
 
-        if (result > 0) {
-            this.computerPlayer.reduceLifePoints(result);
-            this.lastRoundResult = "Human wins the round! Computer loses " + result + " life points.";
-            ((AbstractPlayer) this.humanPlayer).addWin();
-        } else if (result < 0) {
-            this.humanPlayer.reduceLifePoints(-result);
-            this.lastRoundResult = "Computer wins the round! Human loses " + (-result) + " life points.";
-            ((AbstractPlayer) this.computerPlayer).addWin();
-        } else {
-            this.lastRoundResult = "It's a tie! No life points lost.";
+            if (result > 0) {
+                this.computerPlayer.reduceLifePoints(result);
+                this.lastRoundResult = "Human wins the round! Computer loses " + result + " life points.";
+                ((AbstractPlayer) this.humanPlayer).addWin();
+            } else if (result < 0) {
+                this.humanPlayer.reduceLifePoints(-result);
+                this.lastRoundResult = "Computer wins the round! Human loses " + (-result) + " life points.";
+                ((AbstractPlayer) this.computerPlayer).addWin();
+            } else {
+                this.lastRoundResult = "It's a tie! No life points lost.";
+            }
+        } catch (IllegalStateException e) {
+            this.deck.refillDeck();
+            this.playRound();
         }
     }
 
     /**
      * Determines the winner of a round based on the cards drawn by each player.
      * 
-     * @param humanCard    the card drawn by the human player
+     * @param humanCard the card drawn by the human player
      * @param computerCard the card drawn by the computer player
      * @return the result of the round: positive if human wins, negative if computer
      *         wins, 0 if tie
@@ -115,7 +126,7 @@ public class Game implements Serializable {
     /**
      * Determines if the first suit beats the second suit based on the game rules.
      * 
-     * @param first  the first suit
+     * @param first the first suit
      * @param second the second suit
      * @return true if the first suit beats the second suit, false otherwise
      * @precondition first != null && second != null
