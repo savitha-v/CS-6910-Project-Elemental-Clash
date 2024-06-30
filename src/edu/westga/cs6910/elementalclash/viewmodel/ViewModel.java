@@ -26,13 +26,15 @@ import java.util.List;
  * the view to interact with the game.
  * 
  * @version 06/30/2024
- * @author Savitha Venkatesh
+ * @autor Savitha Venkatesh
  */
 public class ViewModel {
     private Game game;
     private StringProperty roundResult;
     private IntegerProperty humanWins;
     private IntegerProperty computerWins;
+    private IntegerProperty humanLifePoints;
+    private IntegerProperty computerLifePoints;
 
     /**
      * Constructs a new ViewModel and initializes the game.
@@ -46,6 +48,9 @@ public class ViewModel {
         this.roundResult = new SimpleStringProperty();
         this.humanWins = new SimpleIntegerProperty();
         this.computerWins = new SimpleIntegerProperty();
+        this.humanLifePoints = new SimpleIntegerProperty();
+        this.computerLifePoints = new SimpleIntegerProperty();
+        this.updateLifePoints();
     }
 
     /**
@@ -57,6 +62,7 @@ public class ViewModel {
     public void startGame() {
         this.game.start();
         this.updateWins();
+        this.updateLifePoints();
         this.roundResult.set("");
     }
 
@@ -71,6 +77,7 @@ public class ViewModel {
             this.game.playRound();
             this.roundResult.set(this.game.getLastRoundResult());
             this.updateWins();
+            this.updateLifePoints();
         } catch (IllegalStateException illegalException) {
             this.roundResult.set("Deck is empty, refilling...");
             this.game.getDeck().refillDeck();
@@ -84,6 +91,14 @@ public class ViewModel {
     private void updateWins() {
         this.humanWins.set(((AbstractPlayer) this.game.getHumanPlayer()).getWins());
         this.computerWins.set(((AbstractPlayer) this.game.getComputerPlayer()).getWins());
+    }
+
+    /**
+     * Updates the life points for each player.
+     */
+    private void updateLifePoints() {
+        this.humanLifePoints.set(this.game.getHumanPlayer().getLifePoints());
+        this.computerLifePoints.set(this.game.getComputerPlayer().getLifePoints());
     }
 
     /**
@@ -134,6 +149,7 @@ public class ViewModel {
      */
     public void restartRound() {
         this.game.start();
+        this.updateLifePoints();
     }
 
     /**
@@ -157,6 +173,7 @@ public class ViewModel {
             ex.printStackTrace();
         }
         this.updateWins();
+        this.updateLifePoints();
         this.roundResult.set("");
     }
 
@@ -185,5 +202,23 @@ public class ViewModel {
      */
     public IntegerProperty computerWinsProperty() {
         return this.computerWins;
+    }
+
+    /**
+     * Gets the property representing the life points of the human player.
+     *
+     * @return the IntegerProperty representing the human player's life points
+     */
+    public IntegerProperty humanLifePointsProperty() {
+        return this.humanLifePoints;
+    }
+
+    /**
+     * Gets the property representing the life points of the computer player.
+     *
+     * @return the IntegerProperty representing the computer player's life points
+     */
+    public IntegerProperty computerLifePointsProperty() {
+        return this.computerLifePoints;
     }
 }

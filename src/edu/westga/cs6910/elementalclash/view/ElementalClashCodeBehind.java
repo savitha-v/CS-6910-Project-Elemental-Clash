@@ -20,7 +20,7 @@ import java.util.List;
  * ElementalClashCodeBehind defines the "controller" for ElementalClash.fxml.
  * 
  * @version 06/30/2024
- * @author Savitha Venkatesh
+ * @autor Savitha Venkatesh
  */
 public class ElementalClashCodeBehind {
 
@@ -51,7 +51,13 @@ public class ElementalClashCodeBehind {
     private Label humanWinsLabel;
 
     @FXML
+    private Label humanLifePointsLabel;
+
+    @FXML
     private Label computerWinsLabel;
+
+    @FXML
+    private Label computerLifePointsLabel;
 
     /**
      * Instantiates a new ElementalClashCodeBehind.
@@ -96,7 +102,9 @@ public class ElementalClashCodeBehind {
     private void bindProperties() {
         this.roundResultLabel.textProperty().bind(this.viewModel.roundResultProperty());
         this.humanWinsLabel.textProperty().bind(this.viewModel.humanWinsProperty().asString());
+        this.humanLifePointsLabel.textProperty().bind(this.viewModel.humanLifePointsProperty().asString());
         this.computerWinsLabel.textProperty().bind(this.viewModel.computerWinsProperty().asString());
+        this.computerLifePointsLabel.textProperty().bind(this.viewModel.computerLifePointsProperty().asString());
     }
 
     /**

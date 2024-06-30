@@ -3,15 +3,29 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?xml-model href="ElementalClash.fxml"?>
+<?xml-model href="ElementalClash.fxml" type="application/xml"?>
 
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1550.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs6910.elementalclash.view.ElementalClashCodeBehind">
     <children>
-        <VBox layoutX="10.0" layoutY="10.0" spacing="20.0">
+        <MenuBar prefHeight="28.0" prefWidth="1550.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="Game">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Restart Round" onAction="#handleRestartRound" />
+                        <MenuItem mnemonicParsing="false" text="Save Game" onAction="#handleSaveGame" />
+                        <MenuItem mnemonicParsing="false" text="Load Game" onAction="#handleLoadGame" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <VBox layoutX="10.0" layoutY="40.0" spacing="20.0">
             <HBox spacing="20.0">
                 <VBox spacing="10.0">
                     <Label text="Human's Front of Cards" />
@@ -66,13 +80,12 @@
                 <Label fx:id="humanWinsLabel" text="0" />
                 <Label text="Computer Wins: " />
                 <Label fx:id="computerWinsLabel" text="0" />
+                <Label text="Human Life Points: " />
+                <Label fx:id="humanLifePointsLabel" text="20" />
+                <Label text="Computer Life Points: " />
+                <Label fx:id="computerLifePointsLabel" text="20" />
             </HBox>
-            <HBox spacing="20.0">
-                <Button text="Play Round" onAction="#handlePlayRound" />
-                <Button text="Restart Round" onAction="#handleRestartRound" />
-                <Button text="Save Game" onAction="#handleSaveGame" />
-                <Button text="Load Game" onAction="#handleLoadGame" />
-            </HBox>
+            <Button text="Play Round" onAction="#handlePlayRound" />
         </VBox>
     </children>
 </AnchorPane>
