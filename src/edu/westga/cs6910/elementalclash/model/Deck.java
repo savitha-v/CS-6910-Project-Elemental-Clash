@@ -28,7 +28,7 @@ public class Deck implements Serializable {
     public Deck() {
         this.cards = new ArrayList<>();
         this.initializeDeck();
-        Collections.shuffle(this.cards);
+        this.shuffleDeck();
     }
 
     /**
@@ -107,6 +107,16 @@ public class Deck implements Serializable {
     public void refillDeck() {
         this.cards.clear();
         this.initializeDeck();
+        this.shuffleDeck();
+    }
+
+    /**
+     * Shuffles the deck.
+     * 
+     * @precondition none
+     * @postcondition deck is shuffled
+     */
+    public void shuffleDeck() {
         Collections.shuffle(this.cards);
     }
 }

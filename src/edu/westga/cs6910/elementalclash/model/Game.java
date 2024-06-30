@@ -8,7 +8,7 @@ import java.io.Serializable;
  * result of each round.
  * 
  * @version 06/30/2024
- * @autor Savitha Venkatesh
+ * @author Savitha Venkatesh
  */
 public class Game implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -72,29 +72,34 @@ public class Game implements Serializable {
      *                accordingly
      */
     public void playRound() {
-        try {
-            if (this.deck.size() < 2) {
-                this.deck.refillDeck();
-            }
-            Card humanCard = this.humanPlayer.drawCard();
-            Card computerCard = this.computerPlayer.drawCard();
+        if (this.isGameOver()) {
+            return;
+        }
 
-            int result = this.determineWinner(humanCard, computerCard);
+        Card humanCard = this.humanPlayer.drawCard();
+        Card computerCard = this.computerPlayer.drawCard();
 
-            if (result > 0) {
-                this.computerPlayer.reduceLifePoints(result);
-                this.lastRoundResult = "Human wins the round! Computer loses " + result + " life points.";
-                ((AbstractPlayer) this.humanPlayer).addWin();
-            } else if (result < 0) {
-                this.humanPlayer.reduceLifePoints(-result);
-                this.lastRoundResult = "Computer wins the round! Human loses " + (-result) + " life points.";
-                ((AbstractPlayer) this.computerPlayer).addWin();
-            } else {
-                this.lastRoundResult = "It's a tie! No life points lost.";
-            }
-        } catch (IllegalStateException e) {
-            this.deck.refillDeck();
-            this.playRound();
+        int result = this.determineWinner(humanCard, computerCard);
+
+        if (result > 0) {
+            this.computerPlayer.reduceLifePoints(result);
+            this.lastRoundResult = "Human wins the round! Computer loses " + result + " life points.";
+            ((AbstractPlayer) this.humanPlayer).addWin();
+        } else if (result < 0) {
+            this.humanPlayer.reduceLifePoints(-result);
+            this.lastRoundResult = "Computer wins the round! Human loses " + (-result) + " life points.";
+            ((AbstractPlayer) this.computerPlayer).addWin();
+        } else {
+            this.lastRoundResult = "It's a tie! No life points lost.";
+        }
+
+        // Return cards to the deck and reshuffle
+        this.deck.addCard(humanCard);
+        this.deck.addCard(computerCard);
+        this.deck.shuffleDeck();
+
+        if (this.isGameOver()) {
+            this.lastRoundResult += " Game over!";
         }
     }
 
