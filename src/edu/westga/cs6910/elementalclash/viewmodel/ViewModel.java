@@ -1,5 +1,6 @@
 package edu.westga.cs6910.elementalclash.viewmodel;
 
+import edu.westga.cs6910.elementalclash.model.AbstractPlayer;
 import edu.westga.cs6910.elementalclash.model.Card;
 import edu.westga.cs6910.elementalclash.model.ComputerPlayer;
 import edu.westga.cs6910.elementalclash.model.Deck;
