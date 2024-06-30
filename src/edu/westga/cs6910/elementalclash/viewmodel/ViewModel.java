@@ -1,23 +1,8 @@
 package edu.westga.cs6910.elementalclash.viewmodel;
 
-import edu.westga.cs6910.elementalclash.model.AbstractPlayer;
-import edu.westga.cs6910.elementalclash.model.Card;
-import edu.westga.cs6910.elementalclash.model.ComputerPlayer;
-import edu.westga.cs6910.elementalclash.model.Deck;
-import edu.westga.cs6910.elementalclash.model.Game;
-import edu.westga.cs6910.elementalclash.model.HumanPlayer;
-import edu.westga.cs6910.elementalclash.model.Play;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.List;
+import edu.westga.cs6910.elementalclash.model.*;
+import javafx.beans.property.*;
+import java.io.*;
 
 /**
  * ViewModel provides the bridge between the view and the model for the
@@ -29,7 +14,6 @@ import java.util.List;
  */
 public class ViewModel {
     private Game game;
-
     private StringProperty roundResult;
     private IntegerProperty humanWins;
     private IntegerProperty computerWins;
@@ -61,17 +45,29 @@ public class ViewModel {
     }
 
     /**
-     * Plays a round of the game where both players draw a card and a winner is
-     * determined.
+     * Plays a round of the game.
      * 
      * @precondition none
-     * @postcondition the round result is determined and life points are adjusted
-     *                accordingly
+     * @postcondition the round result is determined and properties are updated
      */
     public void playRound() {
-        this.game.playRound();
-        this.roundResult.set(this.game.getLastRoundResult());
-        this.updateWins();
+        try {
+            this.game.playRound();
+            this.roundResult.set(this.game.getLastRoundResult());
+            this.updateWins();
+        } catch (IllegalStateException e) {
+            this.roundResult.set("Deck is empty, refilling...");
+            this.game.getDeck().refillDeck();
+            this.playRound(); // Retry playing the round after refilling the deck
+        }
+    }
+
+    /**
+     * Updates the win counts for each player.
+     */
+    private void updateWins() {
+        this.humanWins.set(((AbstractPlayer) this.game.getHumanPlayer()).getWins());
+        this.computerWins.set(((AbstractPlayer) this.game.getComputerPlayer()).getWins());
     }
 
     /**
@@ -118,15 +114,6 @@ public class ViewModel {
     }
 
     /**
-     * Gets the result of the last round played.
-     * 
-     * @return the result of the last round
-     */
-    public String getLastRoundResult() {
-        return this.game.getLastRoundResult();
-    }
-
-    /**
      * Restarts the current round without counting it in the game stats.
      */
     public void restartRound() {
@@ -155,14 +142,6 @@ public class ViewModel {
         }
         this.updateWins();
         this.roundResult.set("");
-    }
-
-    /**
-     * Updates the win counts for each player.
-     */
-    private void updateWins() {
-        this.humanWins.set(((AbstractPlayer) this.game.getHumanPlayer()).getWins());
-        this.computerWins.set(((AbstractPlayer) this.game.getComputerPlayer()).getWins());
     }
 
     /**
