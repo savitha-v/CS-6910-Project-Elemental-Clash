@@ -165,14 +165,29 @@ public class ViewModel {
         this.computerWins.set(((AbstractPlayer) this.game.getComputerPlayer()).getWins());
     }
 
+    /**
+     * Gets the property representing the result of the last round.
+     *
+     * @return the StringProperty representing the last round result
+     */
     public StringProperty roundResultProperty() {
         return this.roundResult;
     }
 
+    /**
+     * Gets the property representing the number of wins of the human player.
+     *
+     * @return the IntegerProperty representing the human player's wins
+     */
     public IntegerProperty humanWinsProperty() {
         return this.humanWins;
     }
 
+    /**
+     * Gets the property representing the number of wins of the computer player.
+     *
+     * @return the IntegerProperty representing the computer player's wins
+     */
     public IntegerProperty computerWinsProperty() {
         return this.computerWins;
     }
