@@ -20,7 +20,7 @@ import java.util.List;
  * ElementalClashCodeBehind defines the "controller" for ElementalClash.fxml.
  * 
  * @version 06/30/2024
- * @autor Savitha Venkatesh
+ * @author Savitha Venkatesh
  */
 public class ElementalClashCodeBehind {
 
