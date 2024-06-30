@@ -1,10 +1,10 @@
 package edu.westga.cs6910.elementalclash.model;
 
+import edu.westga.cs6910.elementalclash.resources.ExceptionMessages;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import edu.westga.cs6910.elementalclash.resources.ExceptionMessages;
 
 /**
  * The Deck class.
