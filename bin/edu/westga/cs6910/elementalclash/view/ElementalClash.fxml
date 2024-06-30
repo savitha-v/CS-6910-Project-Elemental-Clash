@@ -16,7 +16,7 @@
     <children>
         <MenuBar prefHeight="28.0" prefWidth="1550.0">
             <menus>
-                <Menu mnemonicParsing="false" text="Game">
+                <Menu mnemonicParsing="false" text="Game Menu">
                     <items>
                         <MenuItem mnemonicParsing="false" text="Restart Round" onAction="#handleRestartRound" />
                         <MenuItem mnemonicParsing="false" text="Save Game" onAction="#handleSaveGame" />

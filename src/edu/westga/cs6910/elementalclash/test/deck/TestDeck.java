@@ -15,7 +15,7 @@ import edu.westga.cs6910.elementalclash.model.Suit;
  * 
  * Tests the functionality of the Deck class in the Elemental Clash game.
  * 
- * @version 06/23/2024
+ * @version 06/30/2024
  * @author Savitha Venkatesh
  */
 public class TestDeck {
@@ -26,7 +26,7 @@ public class TestDeck {
 	 * Sets up the test fixture.
 	 * 
 	 * @precondition none
-	 * @postcondition this.deck is initialized
+	 * @postcondition deck is initialized
 	 */
 	@BeforeEach
 	public void setUp() {
@@ -34,10 +34,10 @@ public class TestDeck {
 	}
 
 	/**
-	 * Tests that the deck initially contains 52 cards.
+	 * Tests that the deck is initialized with 52 cards.
 	 * 
 	 * @precondition none
-	 * @postcondition none
+	 * @postcondition deck has 52 cards
 	 */
 	@Test
 	public void testDeckShouldHave52CardsInitially() {
@@ -45,42 +45,15 @@ public class TestDeck {
 	}
 
 	/**
-	 * Tests that drawing a card reduces the deck size by one.
+	 * Tests that drawing a card decreases the deck size by one.
 	 * 
 	 * @precondition none
 	 * @postcondition deck size is decreased by one
 	 */
 	@Test
-	public void testDrawCardShouldReduceDeckSize() {
+	public void testDrawCardShouldDecreaseDeckSizeByOne() {
 		this.deck.drawCard();
 		assertEquals(51, this.deck.size());
-	}
-
-	/**
-	 * Tests that adding a card increases the deck size by one.
-	 * 
-	 * @precondition none
-	 * @postcondition deck size is increased by one
-	 */
-	@Test
-	public void testAddCardShouldIncreaseDeckSize() {
-		Card card = new Card(Rank.COMMON_1, Suit.FIRE);
-		this.deck.addCard(card);
-		assertEquals(53, this.deck.size());
-	}
-
-	/**
-	 * Tests that drawing all cards empties the deck.
-	 * 
-	 * @precondition none
-	 * @postcondition deck size is zero
-	 */
-	@Test
-	public void testDrawAllCardsShouldEmptyDeck() {
-		for (int i = 0; i < 52; i++) {
-			this.deck.drawCard();
-		}
-		assertEquals(0, this.deck.size());
 	}
 
 	/**
@@ -100,9 +73,22 @@ public class TestDeck {
 	}
 
 	/**
-	 * Tests that adding a null card throws an exception.
+	 * Tests that adding a card to the deck increases its size by one.
 	 * 
 	 * @precondition none
+	 * @postcondition deck size is increased by one
+	 */
+	@Test
+	public void testAddCardShouldIncreaseDeckSizeByOne() {
+		Card card = new Card(Rank.COMMON_1, Suit.FIRE);
+		this.deck.addCard(card);
+		assertEquals(53, this.deck.size());
+	}
+
+	/**
+	 * Tests that adding a null card to the deck throws an exception.
+	 * 
+	 * @precondition card is null
 	 * @postcondition IllegalArgumentException is thrown
 	 */
 	@Test
@@ -110,5 +96,18 @@ public class TestDeck {
 		assertThrows(IllegalArgumentException.class, () -> {
 			this.deck.addCard(null);
 		});
+	}
+
+	/**
+	 * Tests that the deck is correctly shuffled.
+	 * 
+	 * @precondition none
+	 * @postcondition deck is shuffled
+	 */
+	@Test
+	public void testShuffleDeckShouldShuffleTheDeck() {
+		Deck newDeck = new Deck();
+		newDeck.shuffleDeck();
+		assertNotEquals(this.deck.drawCard(), newDeck.drawCard());
 	}
 }

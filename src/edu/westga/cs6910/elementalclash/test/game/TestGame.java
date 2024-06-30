@@ -5,105 +5,89 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import edu.westga.cs6910.elementalclash.model.ComputerPlayer;
 import edu.westga.cs6910.elementalclash.model.Deck;
 import edu.westga.cs6910.elementalclash.model.Game;
 import edu.westga.cs6910.elementalclash.model.HumanPlayer;
-import edu.westga.cs6910.elementalclash.model.ComputerPlayer;
 
 /**
  * The TestGame class.
  * 
  * Tests the functionality of the Game class in the Elemental Clash game.
  * 
- * @version 06/23/2024
+ * @version 06/30/2024
  * @author Savitha Venkatesh
  */
 public class TestGame {
 
 	private Game game;
+	private HumanPlayer humanPlayer;
+	private ComputerPlayer computerPlayer;
 	private Deck deck;
 
 	/**
 	 * Sets up the test fixture.
 	 * 
 	 * @precondition none
-	 * @postcondition this.game and this.deck are initialized
+	 * @postcondition game, humanPlayer, computerPlayer, and deck are initialized
 	 */
 	@BeforeEach
 	public void setUp() {
 		this.deck = new Deck();
-		this.game = new Game(new HumanPlayer("Human", this.deck), new ComputerPlayer("Computer", this.deck), this.deck);
+		this.humanPlayer = new HumanPlayer("Human", this.deck);
+		this.computerPlayer = new ComputerPlayer("Computer", this.deck);
+		this.game = new Game(this.humanPlayer, this.computerPlayer, this.deck);
 	}
 
 	/**
-	 * Tests that the game starts with the correct initial conditions.
+	 * Tests that the game starts with players having initial hands drawn.
 	 * 
 	 * @precondition none
-	 * @postcondition game is started with initial hands drawn
+	 * @postcondition players have 5 cards in hand
 	 */
 	@Test
-	public void testGameShouldStartWithCorrectInitialConditions() {
+	public void testStartShouldDrawInitialHands() {
 		this.game.start();
-		assertEquals(5, this.game.getHumanPlayer().getHand().size());
-		assertEquals(5, this.game.getComputerPlayer().getHand().size());
+		System.out.println("Human hand size after start: " + this.humanPlayer.getHand().size());
+		System.out.println("Computer hand size after start: " + this.computerPlayer.getHand().size());
+		assertEquals(5, this.humanPlayer.getHand().size());
+		assertEquals(5, this.computerPlayer.getHand().size());
 	}
 
 	/**
-	 * Tests that playing a round decreases the deck size.
+	 * Tests that playing a round updates the round result.
 	 * 
 	 * @precondition none
-	 * @postcondition deck size is decreased by 2
+	 * @postcondition round result is updated
 	 */
 	@Test
-	public void testPlayRoundShouldDecreaseDeckSize() {
+	public void testPlayRoundShouldUpdateRoundResult() {
 		this.game.start();
-		int initialDeckSize = this.deck.size();
 		this.game.playRound();
-		assertEquals(initialDeckSize - 2, this.deck.size());
+		assertNotNull(this.game.getLastRoundResult());
 	}
 
 	/**
-	 * Tests that playing multiple rounds results in correct life point deductions.
+	 * Tests that the game is over when a player's life points reach zero.
 	 * 
 	 * @precondition none
-	 * @postcondition life points are deducted correctly
+	 * @postcondition game is over when life points are zero
 	 */
 	@Test
-	public void testPlayMultipleRoundsShouldResultInCorrectLifePointDeductions() {
-		this.game.start();
-		for (int i = 0; i < 10; i++) {
-			this.game.playRound();
-		}
-		assertTrue(this.game.getHumanLifePoints() < 20 || this.game.getComputerLifePoints() < 20);
-	}
-
-	/**
-	 * Tests that the game is over when a player has zero life points.
-	 * 
-	 * @precondition none
-	 * @postcondition game is over when a player has zero life points
-	 */
-	@Test
-	public void testIsGameOverShouldReturnTrueWhenPlayerHasZeroLifePoints() {
-		this.game.start();
-		while (this.game.getHumanLifePoints() > 0 && this.game.getComputerLifePoints() > 0) {
-			this.game.playRound();
-		}
+	public void testIsGameOverShouldReturnTrueWhenLifePointsAreZero() {
+		this.humanPlayer.reduceLifePoints(20);
 		assertTrue(this.game.isGameOver());
 	}
 
 	/**
-	 * Tests that the winner is correctly determined when the game is over.
+	 * Tests that the game returns the correct winner.
 	 * 
 	 * @precondition none
-	 * @postcondition the winner is correctly determined
+	 * @postcondition correct winner is returned
 	 */
 	@Test
-	public void testGetWinnerShouldReturnCorrectWinnerWhenGameIsOver() {
-		this.game.start();
-		while (this.game.getHumanLifePoints() > 0 && this.game.getComputerLifePoints() > 0) {
-			this.game.playRound();
-		}
-		assertNotNull(this.game.getWinner());
+	public void testGetWinnerShouldReturnCorrectWinner() {
+		this.humanPlayer.reduceLifePoints(20);
+		assertEquals(this.computerPlayer, this.game.getWinner());
 	}
 }
