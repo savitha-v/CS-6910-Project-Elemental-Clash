@@ -10,7 +10,7 @@ import edu.westga.cs6910.elementalclash.resources.ExceptionMessages;
  * 
  * Represents a deck of cards in the Elemental Clash game.
  * 
- * @version 06/23/2024
+ * @version 06/30/2024
  * @author Savitha Venkatesh
  */
 public class Deck {
@@ -25,12 +25,22 @@ public class Deck {
 	 */
 	public Deck() {
 		this.cards = new ArrayList<>();
+		this.initializeDeck();
+		Collections.shuffle(this.cards);
+	}
+
+	/**
+	 * Initializes the deck with 52 cards.
+	 * 
+	 * @precondition none
+	 * @postcondition deck contains 52 cards
+	 */
+	private void initializeDeck() {
 		for (Suit suit : Suit.values()) {
 			for (Rank rank : Rank.values()) {
 				this.cards.add(new Card(rank, suit));
 			}
 		}
-		Collections.shuffle(this.cards);
 	}
 
 	/**
@@ -75,5 +85,26 @@ public class Deck {
 			throw new IllegalArgumentException(ExceptionMessages.NULL_CARD);
 		}
 		this.cards.add(card);
+	}
+
+	/**
+	 * Checks if the deck is empty.
+	 * 
+	 * @return true if the deck is empty, false otherwise
+	 */
+	public boolean isEmpty() {
+		return this.cards.isEmpty();
+	}
+
+	/**
+	 * Refills the deck with a new set of 52 cards.
+	 * 
+	 * @precondition none
+	 * @postcondition deck contains 52 cards
+	 */
+	public void refillDeck() {
+		this.cards.clear();
+		this.initializeDeck();
+		Collections.shuffle(this.cards);
 	}
 }
