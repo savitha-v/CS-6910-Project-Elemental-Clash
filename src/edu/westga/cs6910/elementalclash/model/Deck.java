@@ -1,5 +1,6 @@
 package edu.westga.cs6910.elementalclash.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,8 +14,9 @@ import edu.westga.cs6910.elementalclash.resources.ExceptionMessages;
  * @version 06/30/2024
  * @author Savitha Venkatesh
  */
-public class Deck {
-
+public class Deck implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private List<Card> cards;
 
     /**

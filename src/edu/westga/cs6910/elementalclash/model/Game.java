@@ -1,5 +1,7 @@
 package edu.westga.cs6910.elementalclash.model;
 
+import java.io.Serializable;
+
 /**
  * Game represents a game of Elemental Clash between a human player and a
  * computer player. It manages the game state, including players, deck, and the
@@ -8,7 +10,9 @@ package edu.westga.cs6910.elementalclash.model;
  * @version 06/30/2024
  * @author Savitha Venkatesh
  */
-public class Game {
+public class Game implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private Play humanPlayer;
     private Play computerPlayer;
     private Deck deck;

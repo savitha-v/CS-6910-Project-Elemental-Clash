@@ -1,5 +1,6 @@
 package edu.westga.cs6910.elementalclash.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,9 @@ import java.util.List;
  * @version 06/30/2024
  * @author Savitha Venkatesh
  */
-public abstract class AbstractPlayer implements Play {
+public abstract class AbstractPlayer implements Play, Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private String name;
     private int lifePoints;
     private Deck deck;

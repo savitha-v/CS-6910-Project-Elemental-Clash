@@ -1,6 +1,7 @@
 package edu.westga.cs6910.elementalclash.model;
 
 import edu.westga.cs6910.elementalclash.resources.ExceptionMessages;
+import java.io.Serializable;
 
 /**
  * The Card class.
@@ -9,13 +10,14 @@ import edu.westga.cs6910.elementalclash.resources.ExceptionMessages;
  * Each card has a rank (common, rare, legendary) and a suit (fire, earth, air,
  * water).
  * 
- * @version 06/23/2024
+ * @version 06/30/2024
  * @author Savitha Venkatesh
  */
-public class Card {
+public class Card implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-	private final Rank rank;
-	private final Suit suit;
+    private final Rank rank;
+    private final Suit suit;
 
 	/**
 	 * Creates a card with the specified rank and suit.
