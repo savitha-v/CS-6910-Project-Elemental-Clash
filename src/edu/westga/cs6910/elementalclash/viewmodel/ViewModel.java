@@ -1,8 +1,24 @@
 package edu.westga.cs6910.elementalclash.viewmodel;
 
-import edu.westga.cs6910.elementalclash.model.*;
-import javafx.beans.property.*;
-import java.io.*;
+import edu.westga.cs6910.elementalclash.model.AbstractPlayer;
+import edu.westga.cs6910.elementalclash.model.Card;
+import edu.westga.cs6910.elementalclash.model.ComputerPlayer;
+import edu.westga.cs6910.elementalclash.model.Deck;
+import edu.westga.cs6910.elementalclash.model.Game;
+import edu.westga.cs6910.elementalclash.model.HumanPlayer;
+import edu.westga.cs6910.elementalclash.model.Play;
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.List;
 
 /**
  * ViewModel provides the bridge between the view and the model for the
@@ -55,10 +71,10 @@ public class ViewModel {
             this.game.playRound();
             this.roundResult.set(this.game.getLastRoundResult());
             this.updateWins();
-        } catch (IllegalStateException e) {
+        } catch (IllegalStateException illegalException) {
             this.roundResult.set("Deck is empty, refilling...");
             this.game.getDeck().refillDeck();
-            this.playRound(); // Retry playing the round after refilling the deck
+            this.playRound();
         }
     }
 
