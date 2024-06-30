@@ -203,4 +203,13 @@ public class Game {
     public Play getComputerPlayer() {
         return this.computerPlayer;
     }
+
+    /**
+     * Gets the deck.
+     * 
+     * @return the deck
+     */
+    public Deck getDeck() {
+        return this.deck;
+    }
 }
