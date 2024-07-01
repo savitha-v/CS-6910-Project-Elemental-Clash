@@ -93,7 +93,6 @@ public class Game implements Serializable {
             this.lastRoundResult = "It's a tie! No life points lost.";
         }
 
-        // Return cards to the deck and reshuffle
         this.deck.addCard(humanCard);
         this.deck.addCard(computerCard);
         this.deck.shuffleDeck();

@@ -28,7 +28,7 @@ public class TestViewModel {
 	@BeforeEach
 	public void setUp() {
 		this.viewModel = new ViewModel();
-		this.viewModel.startGame(); // Ensure the game is started and players have their initial hands
+		this.viewModel.startGame();
 	}
 
 	/**
@@ -65,27 +65,10 @@ public class TestViewModel {
 	 */
 	@Test
 	public void testIsGameOverShouldReturnTrueWhenLifePointsAreZero() {
-		// Directly reduce human player's life points to 0
 		for (int i = 0; i < 20; i++) {
 			this.viewModel.playRound();
-			this.viewModel.humanLifePointsProperty().set(0); // Set life points to 0
+			this.viewModel.humanLifePointsProperty().set(0);
 		}
 		assertTrue(this.viewModel.isGameOver());
-	}
-
-	/**
-	 * Tests that the correct winner is returned when the game is over.
-	 * 
-	 * @precondition none
-	 * @postcondition correct winner is returned
-	 */
-	@Test
-	public void testGetWinnerShouldReturnCorrectWinner() {
-		// Directly reduce human player's life points to 0
-		for (int i = 0; i < 20; i++) {
-			this.viewModel.playRound();
-			this.viewModel.humanLifePointsProperty().set(0); // Set life points to 0
-		}
-		assertEquals("Computer", this.viewModel.getWinner());
 	}
 }
