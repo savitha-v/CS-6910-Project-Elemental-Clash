@@ -23,7 +23,7 @@ public class ViewCard {
 
 	public static final double CARD_WIDTH = 110;
 	public static final double CARD_HEIGHT = 170;
-	public static final String CARD_BACK_IMAGE = "images/wolfie.jpg";
+	public static final String CARD_BACK_IMAGE = "images/elementalclashcardback.jpg";
 	public static final double CARD_ARC = 20;
 
 	private Card card;
