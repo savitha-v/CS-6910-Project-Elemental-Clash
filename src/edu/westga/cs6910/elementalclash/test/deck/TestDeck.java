@@ -10,6 +10,9 @@ import edu.westga.cs6910.elementalclash.model.Deck;
 import edu.westga.cs6910.elementalclash.model.Rank;
 import edu.westga.cs6910.elementalclash.model.Suit;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * The TestDeck class.
  * 
@@ -106,8 +109,67 @@ public class TestDeck {
 	 */
 	@Test
 	public void testShuffleDeckShouldShuffleTheDeck() {
-		Deck newDeck = new Deck();
-		newDeck.shuffleDeck();
-		assertNotEquals(this.deck.drawCard(), newDeck.drawCard());
+		List<Card> originalCards = new ArrayList<>(this.deck.getCards());
+		this.deck.shuffleDeck();
+		assertNotEquals(originalCards, this.deck.getCards());
+	}
+
+	/**
+	 * Tests that setting the deck cards works correctly.
+	 * 
+	 * @precondition none
+	 * @postcondition deck has the specified cards
+	 */
+	@Test
+	public void testSetCardsShouldWorkCorrectly() {
+		List<Card> newCards = new ArrayList<>();
+		newCards.add(new Card(Rank.RARE_10, Suit.WATER));
+		newCards.add(new Card(Rank.LEGENDARY_13, Suit.FIRE));
+		this.deck.setCards(newCards);
+		assertEquals(2, this.deck.size());
+		assertEquals(newCards, this.deck.getCards());
+	}
+
+	/**
+	 * Tests that getting the deck cards works correctly.
+	 * 
+	 * @precondition none
+	 * @postcondition correct list of cards is returned
+	 */
+	@Test
+	public void testGetCardsShouldReturnCorrectListOfCards() {
+		List<Card> cards = this.deck.getCards();
+		assertEquals(52, cards.size());
+	}
+
+	/**
+	 * Tests that the deck can be refilled correctly.
+	 * 
+	 * @precondition none
+	 * @postcondition deck is refilled to 52 cards
+	 */
+	@Test
+	public void testRefillDeckShouldRefillTo52Cards() {
+		for (int i = 0; i < 52; i++) {
+			this.deck.drawCard();
+		}
+		assertEquals(0, this.deck.size());
+		this.deck.refillDeck();
+		assertEquals(52, this.deck.size());
+	}
+
+	/**
+	 * Tests that the deck is empty check works correctly.
+	 * 
+	 * @precondition none
+	 * @postcondition correctly identifies if the deck is empty
+	 */
+	@Test
+	public void testIsEmptyShouldReturnCorrectValue() {
+		assertFalse(this.deck.isEmpty());
+		for (int i = 0; i < 52; i++) {
+			this.deck.drawCard();
+		}
+		assertTrue(this.deck.isEmpty());
 	}
 }

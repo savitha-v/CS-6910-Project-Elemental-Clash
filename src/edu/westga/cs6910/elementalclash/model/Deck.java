@@ -119,4 +119,22 @@ public class Deck implements Serializable {
     public void shuffleDeck() {
         Collections.shuffle(this.cards);
     }
+
+    /**
+     * Gets the list of cards in the deck.
+     * 
+     * @return the list of cards in the deck
+     */
+    public List<Card> getCards() {
+        return this.cards;
+    }
+
+    /**
+     * Sets the list of cards in the deck.
+     * 
+     * @param cards the list of cards to set
+     */
+    public void setCards(List<Card> cards) {
+        this.cards = cards;
+    }
 }

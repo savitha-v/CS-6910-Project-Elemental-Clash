@@ -106,4 +106,31 @@ public abstract class AbstractPlayer implements Play, Serializable {
     public int getWins() {
         return this.wins;
     }
+
+    /**
+     * Sets the hand of the player.
+     * 
+     * @param hand the hand to set
+     */
+    public void setHand(List<Card> hand) {
+        this.hand = hand;
+    }
+
+    /**
+     * Sets the life points of the player.
+     * 
+     * @param lifePoints the life points to set
+     */
+    public void setLifePoints(int lifePoints) {
+        this.lifePoints = lifePoints;
+    }
+
+    /**
+     * Sets the win count for the player.
+     * 
+     * @param wins the number of wins to set
+     */
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
 }

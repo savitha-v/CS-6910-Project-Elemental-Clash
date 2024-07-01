@@ -6,7 +6,7 @@ import java.util.List;
  * Play defines the behaviors that a player in the Elemental Clash game must
  * implement.
  * 
- * @version 06/23/2024
+ * @version 06/30/2024
  * @author Savitha Venkatesh
  */
 public interface Play {
@@ -47,4 +47,18 @@ public interface Play {
 	 * @return the hand of the player
 	 */
 	List<Card> getHand();
+
+	/**
+	 * Sets the hand of the player.
+	 * 
+	 * @param hand the hand to set
+	 */
+	void setHand(List<Card> hand);
+
+	/**
+	 * Sets the life points of the player.
+	 * 
+	 * @param lifePoints the life points to set
+	 */
+	void setLifePoints(int lifePoints);
 }

@@ -1,6 +1,8 @@
 package edu.westga.cs6910.elementalclash.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Game represents a game of Elemental Clash between a human player and a
@@ -17,6 +19,12 @@ public class Game implements Serializable {
     private Play computerPlayer;
     private Deck deck;
     private String lastRoundResult;
+
+    private List<Card> previousHumanHand;
+    private List<Card> previousComputerHand;
+    private List<Card> previousDeck;
+    private int previousHumanLifePoints;
+    private int previousComputerLifePoints;
 
     /**
      * Constructs a new Game with the specified human and computer players and deck.
@@ -64,6 +72,20 @@ public class Game implements Serializable {
     }
 
     /**
+     * Saves the current state of the game before playing a round.
+     * 
+     * @precondition none
+     * @postcondition previous state is saved
+     */
+    private void saveState() {
+        this.previousHumanHand = new ArrayList<>(this.humanPlayer.getHand());
+        this.previousComputerHand = new ArrayList<>(this.computerPlayer.getHand());
+        this.previousDeck = new ArrayList<>(this.deck.getCards());
+        this.previousHumanLifePoints = this.humanPlayer.getLifePoints();
+        this.previousComputerLifePoints = this.computerPlayer.getLifePoints();
+    }
+
+    /**
      * Plays a round of the game where both players draw a card and a winner is
      * determined.
      * 
@@ -75,6 +97,8 @@ public class Game implements Serializable {
         if (this.isGameOver()) {
             return;
         }
+
+        this.saveState();
 
         Card humanCard = this.humanPlayer.drawCard();
         Card computerCard = this.computerPlayer.drawCard();
@@ -100,6 +124,21 @@ public class Game implements Serializable {
         if (this.isGameOver()) {
             this.lastRoundResult += " Game over!";
         }
+    }
+
+    /**
+     * Restores the game state to the state saved before the last round was played.
+     * 
+     * @precondition none
+     * @postcondition game state is restored to before the last round
+     */
+    public void restartRound() {
+        this.humanPlayer.setHand(new ArrayList<>(this.previousHumanHand));
+        this.computerPlayer.setHand(new ArrayList<>(this.previousComputerHand));
+        this.deck.setCards(new ArrayList<>(this.previousDeck));
+        this.humanPlayer.setLifePoints(this.previousHumanLifePoints);
+        this.computerPlayer.setLifePoints(this.previousComputerLifePoints);
+        this.lastRoundResult = null;
     }
 
     /**

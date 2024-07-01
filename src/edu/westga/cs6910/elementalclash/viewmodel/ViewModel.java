@@ -86,6 +86,16 @@ public class ViewModel {
     }
 
     /**
+     * Restarts the current round without resetting the game.
+     */
+    public void restartRound() {
+        this.game.restartRound();
+        this.updateWins();
+        this.updateLifePoints();
+        this.roundResult.set(this.game.getLastRoundResult());
+    }
+
+    /**
      * Updates the win counts for each player.
      */
     private void updateWins() {
@@ -142,14 +152,6 @@ public class ViewModel {
      */
     public List<Card> getComputerHand() {
         return this.game.getComputerPlayer().getHand();
-    }
-
-    /**
-     * Restarts the current round without counting it in the game stats.
-     */
-    public void restartRound() {
-        this.game.start();
-        this.updateLifePoints();
     }
 
     /**
