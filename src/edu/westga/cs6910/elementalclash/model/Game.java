@@ -1,5 +1,6 @@
 package edu.westga.cs6910.elementalclash.model;
 
+import edu.westga.cs6910.elementalclash.resources.ExceptionMessages;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,8 @@ public class Game implements Serializable {
     private List<Card> previousDeck;
     private int previousHumanLifePoints;
     private int previousComputerLifePoints;
+    private int previousHumanWins;
+    private int previousComputerWins;
 
     /**
      * Constructs a new Game with the specified human and computer players and deck.
@@ -83,6 +86,8 @@ public class Game implements Serializable {
         this.previousDeck = new ArrayList<>(this.deck.getCards());
         this.previousHumanLifePoints = this.humanPlayer.getLifePoints();
         this.previousComputerLifePoints = this.computerPlayer.getLifePoints();
+        this.previousHumanWins = ((AbstractPlayer) this.humanPlayer).getWins();
+        this.previousComputerWins = ((AbstractPlayer) this.computerPlayer).getWins();
     }
 
     /**
@@ -100,8 +105,8 @@ public class Game implements Serializable {
 
         this.saveState();
 
-        Card humanCard = this.humanPlayer.drawCard();
-        Card computerCard = this.computerPlayer.drawCard();
+        Card humanCard = this.humanPlayer.drawCard();  // Draw card for human player
+        Card computerCard = this.computerPlayer.drawCard();  // Draw card for computer player
 
         int result = this.determineWinner(humanCard, computerCard);
 
@@ -117,6 +122,7 @@ public class Game implements Serializable {
             this.lastRoundResult = "It's a tie! No life points lost.";
         }
 
+        // Add the played cards back to the deck
         this.deck.addCard(humanCard);
         this.deck.addCard(computerCard);
         this.deck.shuffleDeck();
@@ -138,6 +144,9 @@ public class Game implements Serializable {
         this.deck.setCards(new ArrayList<>(this.previousDeck));
         this.humanPlayer.setLifePoints(this.previousHumanLifePoints);
         this.computerPlayer.setLifePoints(this.previousComputerLifePoints);
+        ((AbstractPlayer) this.humanPlayer).setWins(this.previousHumanWins);
+        ((AbstractPlayer) this.computerPlayer).setWins(this.previousComputerWins);
+        this.deck.shuffleDeck(); // Ensure the deck is shuffled to get a different card next time
         this.lastRoundResult = null;
     }
 
@@ -172,12 +181,12 @@ public class Game implements Serializable {
      * @param first the first suit
      * @param second the second suit
      * @return true if the first suit beats the second suit, false otherwise
-     * @precondition first != null && second != null
-     * @postcondition none
      */
     private boolean beats(Suit first, Suit second) {
-        return (first == Suit.FIRE && second == Suit.AIR) || (first == Suit.AIR && second == Suit.EARTH)
-                || (first == Suit.EARTH && second == Suit.WATER) || (first == Suit.WATER && second == Suit.FIRE);
+        return (first == Suit.FIRE && second == Suit.AIR) || 
+               (first == Suit.AIR && second == Suit.EARTH) ||
+               (first == Suit.EARTH && second == Suit.WATER) || 
+               (first == Suit.WATER && second == Suit.FIRE);
     }
 
     /**
@@ -185,12 +194,9 @@ public class Game implements Serializable {
      * 
      * @param rank the rank of the card
      * @return the power level of the rank
-     * @precondition rank != null
-     * @postcondition none
      */
     private int getPowerLevel(Rank rank) {
-        String[] parts = rank.toString().split(" ");
-        return Integer.parseInt(parts[1]);
+        return rank.getPower();
     }
 
     /**

@@ -9,7 +9,7 @@ import java.util.List;
  * Clash game. It includes common attributes and methods for both human and
  * computer players.
  * 
- * @version 06/30/2024
+ * @version 07/07/2024
  * @author Savitha Venkatesh
  */
 public abstract class AbstractPlayer implements Play, Serializable {
@@ -70,6 +70,66 @@ public abstract class AbstractPlayer implements Play, Serializable {
     }
 
     /**
+     * Plays the best card from the player's hand based on the game state.
+     * 
+     * @param opponentCard the card played by the opponent, can be null
+     * @return the card played by the player
+     */
+    @Override
+    public Card playBestCard(Card opponentCard) {
+        Card bestCard = null;
+        int bestScore = Integer.MIN_VALUE;
+
+        for (Card card : this.hand) {
+            int score = this.evaluateCard(card, opponentCard);
+            if (score > bestScore) {
+                bestScore = score;
+                bestCard = card;
+            }
+        }
+
+        // Note: Do not remove the bestCard from hand here
+        return bestCard;
+    }
+
+    /**
+     * Evaluates the score of a card against the opponent's card.
+     * 
+     * @param card the card to evaluate
+     * @param opponentCard the card played by the opponent, can be null
+     * @return the score of the card
+     */
+    private int evaluateCard(Card card, Card opponentCard) {
+        int score = 0;
+
+        if (opponentCard == null) {
+            return card.getRank().getPower();
+        }
+
+        if (this.beats(card.getSuit(), opponentCard.getSuit())) {
+            score += card.getRank().getPower();
+        } else if (this.beats(opponentCard.getSuit(), card.getSuit())) {
+            score -= opponentCard.getRank().getPower();
+        }
+
+        return score;
+    }
+
+    /**
+     * Determines if the first suit beats the second suit based on the game rules.
+     * 
+     * @param first the first suit
+     * @param second the second suit
+     * @return true if the first suit beats the second suit, false otherwise
+     */
+    private boolean beats(Suit first, Suit second) {
+        return (first == Suit.FIRE && second == Suit.AIR) || 
+               (first == Suit.AIR && second == Suit.EARTH) ||
+               (first == Suit.EARTH && second == Suit.WATER) || 
+               (first == Suit.WATER && second == Suit.FIRE);
+    }
+
+    /**
      * Reduces the player's life points by the specified amount.
      * 
      * @param points the amount of points to reduce
@@ -112,6 +172,7 @@ public abstract class AbstractPlayer implements Play, Serializable {
      * 
      * @param hand the hand to set
      */
+    @Override
     public void setHand(List<Card> hand) {
         this.hand = hand;
     }
@@ -121,6 +182,7 @@ public abstract class AbstractPlayer implements Play, Serializable {
      * 
      * @param lifePoints the life points to set
      */
+    @Override
     public void setLifePoints(int lifePoints) {
         this.lifePoints = lifePoints;
     }
