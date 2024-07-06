@@ -1,6 +1,5 @@
 package edu.westga.cs6910.elementalclash.model;
 
-import edu.westga.cs6910.elementalclash.resources.ExceptionMessages;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.List;
  * computer player. It manages the game state, including players, deck, and the
  * result of each round.
  * 
- * @version 06/30/2024
+ * @version 07/07/2024
  * @author Savitha Venkatesh
  */
 public class Game implements Serializable {
@@ -105,8 +104,8 @@ public class Game implements Serializable {
 
         this.saveState();
 
-        Card humanCard = this.humanPlayer.drawCard();  // Draw card for human player
-        Card computerCard = this.computerPlayer.drawCard();  // Draw card for computer player
+        Card humanCard = this.humanPlayer.drawCard();  
+        Card computerCard = this.computerPlayer.drawCard();  
 
         int result = this.determineWinner(humanCard, computerCard);
 
@@ -146,7 +145,7 @@ public class Game implements Serializable {
         this.computerPlayer.setLifePoints(this.previousComputerLifePoints);
         ((AbstractPlayer) this.humanPlayer).setWins(this.previousHumanWins);
         ((AbstractPlayer) this.computerPlayer).setWins(this.previousComputerWins);
-        this.deck.shuffleDeck(); // Ensure the deck is shuffled to get a different card next time
+        this.deck.shuffleDeck(); 
         this.lastRoundResult = null;
     }
 
@@ -183,10 +182,10 @@ public class Game implements Serializable {
      * @return true if the first suit beats the second suit, false otherwise
      */
     private boolean beats(Suit first, Suit second) {
-        return (first == Suit.FIRE && second == Suit.AIR) || 
-               (first == Suit.AIR && second == Suit.EARTH) ||
-               (first == Suit.EARTH && second == Suit.WATER) || 
-               (first == Suit.WATER && second == Suit.FIRE);
+        return (first == Suit.FIRE && second == Suit.AIR) 
+        		|| (first == Suit.AIR && second == Suit.EARTH) 
+        		|| (first == Suit.EARTH && second == Suit.WATER) 
+        		|| (first == Suit.WATER && second == Suit.FIRE);
     }
 
     /**
