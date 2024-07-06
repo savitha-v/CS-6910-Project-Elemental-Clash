@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import edu.westga.cs6910.elementalclash.model.AbstractPlayer;
 import edu.westga.cs6910.elementalclash.model.Card;
 import edu.westga.cs6910.elementalclash.model.Deck;
 import edu.westga.cs6910.elementalclash.model.Game;
@@ -21,7 +22,7 @@ import edu.westga.cs6910.elementalclash.model.Rank;
  * 
  * Tests the functionality of the Game class in the Elemental Clash game.
  * 
- * @version 06/30/2024
+ * @version 07/07/2024
  * @author Savitha Venkatesh
  */
 public class TestGame {
@@ -172,29 +173,41 @@ public class TestGame {
         int previousComputerLifePoints = this.game.getComputerLifePoints();
         List<Card> previousHumanHand = new ArrayList<>(this.game.getHumanPlayer().getHand());
         List<Card> previousComputerHand = new ArrayList<>(this.game.getComputerPlayer().getHand());
+        int previousHumanWins = ((AbstractPlayer) this.game.getHumanPlayer()).getWins();
+        int previousComputerWins = ((AbstractPlayer) this.game.getComputerPlayer()).getWins();
 
         this.game.playRound();
         this.game.restartRound();
 
         assertEquals(previousHumanLifePoints, this.game.getHumanLifePoints());
         assertEquals(previousComputerLifePoints, this.game.getComputerLifePoints());
-        assertEquals(previousHumanHand.size(), this.game.getHumanPlayer().getHand().size());
-        assertEquals(previousComputerHand.size(), this.game.getComputerPlayer().getHand().size());
+        assertEquals(previousHumanHand, this.game.getHumanPlayer().getHand());
+        assertEquals(previousComputerHand, this.game.getComputerPlayer().getHand());
+        assertEquals(previousHumanWins, ((AbstractPlayer) this.game.getHumanPlayer()).getWins());
+        assertEquals(previousComputerWins, ((AbstractPlayer) this.game.getComputerPlayer()).getWins());
     }
 
     /**
-     * Tests that playing a round after restarting works correctly.
+     * Tests that playing a round after restarting works correctly and different cards are drawn.
      * 
      * @precondition none
-     * @postcondition game functions correctly after restarting a round
+     * @postcondition game functions correctly after restarting a round and different cards are drawn
      */
     @Test
     public void testPlayRoundAfterRestartShouldWorkCorrectly() {
         this.game.start();
         this.game.playRound();
+        List<Card> previousHumanHand = new ArrayList<>(this.game.getHumanPlayer().getHand());
+        List<Card> previousComputerHand = new ArrayList<>(this.game.getComputerPlayer().getHand());
+
         this.game.restartRound();
         this.game.playRound();
 
+        List<Card> newHumanHand = new ArrayList<>(this.game.getHumanPlayer().getHand());
+        List<Card> newComputerHand = new ArrayList<>(this.game.getComputerPlayer().getHand());
+
+        assertNotEquals(previousHumanHand, newHumanHand);
+        assertNotEquals(previousComputerHand, newComputerHand);
         assertNotNull(this.game.getLastRoundResult());
         assertTrue(this.game.getHumanLifePoints() <= 20);
         assertTrue(this.game.getComputerLifePoints() <= 20);
