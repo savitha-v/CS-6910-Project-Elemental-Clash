@@ -123,10 +123,10 @@ public abstract class AbstractPlayer implements Play, Serializable {
      * @return true if the first suit beats the second suit, false otherwise
      */
     private boolean beats(Suit first, Suit second) {
-        return (first == Suit.FIRE && second == Suit.AIR) || 
-               (first == Suit.AIR && second == Suit.EARTH) ||
-               (first == Suit.EARTH && second == Suit.WATER) || 
-               (first == Suit.WATER && second == Suit.FIRE);
+        return (first == Suit.FIRE && second == Suit.AIR) 
+        		|| (first == Suit.AIR && second == Suit.EARTH) 
+        		|| (first == Suit.EARTH && second == Suit.WATER) 
+        		|| (first == Suit.WATER && second == Suit.FIRE);
     }
 
     /**
