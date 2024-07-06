@@ -1,0 +1,40 @@
+Elemental Clash Game: Changes and Improvements
+Overview
+This document outlines the main structural changes and improvements made to the Elemental Clash game. The primary focus was on ensuring that the game state is correctly restored and that different outcomes occur when the round is restarted and replayed. Additionally, the game logic was enhanced to play the best possible card rather than random cards.
+
+Structural Changes and Improvements
+1. State Restoration on Round Restart
+Issue: When the round was restarted, the game state, including life points, hands, deck, and win counts, was not correctly restored, leading to inconsistencies and errors.
+
+Change:
+
+Implemented a saveState method to save the current game state before a round is played.
+Updated the restartRound method to restore the exact previous state, including hands, deck, life points, and win counts.
+Shuffled the deck after restoring the state to ensure a different card is drawn when the round is replayed.
+
+2. Drawing Different Cards After Round Restart
+Issue: When the round was restarted and replayed, the same card was drawn, resulting in the same outcome.
+
+Change:
+
+Ensured that the deck is shuffled after restoring the previous state to guarantee that a different card is drawn when the round is replayed.
+Added checks in the tests to verify that different cards are drawn and that the outcomes change accordingly.
+
+3. Improved Game Logic to Play the Best Card
+Issue: The previous game logic involved playing random cards, which did not utilize strategic elements of the game effectively.
+
+Change:
+
+Implemented logic to play the best possible card based on the current game state and the opponent's card.
+This change ensures that players make strategic decisions to maximize their chances of winning each round.
+
+4. Enhanced Test Coverage
+Issue: The existing tests did not fully cover the scenarios related to state restoration and different outcomes.
+
+Change:
+
+Added tests to verify that the exact game state is restored when the round is restarted.
+Added tests to ensure that different cards are drawn and different outcomes occur after restarting and replaying a round.
+
+Conclusion
+These changes and improvements ensure that the Elemental Clash game functions correctly, with consistent state restoration and varying outcomes after round restarts. The game logic now strategically plays the best possible card, enhancing the overall gameplay experience. The enhanced test coverage and detailed Javadoc comments further improve the maintainability and reliability of the codebase.
