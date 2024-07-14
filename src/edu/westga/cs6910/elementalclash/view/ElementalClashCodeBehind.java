@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,7 +22,8 @@ import java.util.List;
 /**
  * ElementalClashCodeBehind defines the "controller" for ElementalClash.fxml.
  * 
- * @version 06/30/2024
+ * @version 07/14/2024
+ * @author Savitha Venkatesh
  */
 public class ElementalClashCodeBehind {
     

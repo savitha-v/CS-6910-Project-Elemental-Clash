@@ -9,7 +9,7 @@ import java.util.List;
  * computer player. It manages the game state, including players, deck, and the
  * result of each round.
  * 
- * @version 07/07/2024
+ * @version 07/14/2024
  * @author Savitha Venkatesh
  */
 public class Game implements Serializable {

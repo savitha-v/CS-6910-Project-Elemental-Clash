@@ -15,7 +15,7 @@ import edu.westga.cs6910.elementalclash.resources.ExceptionMessages;
  * 
  * Tests the functionality of the Card class in the Elemental Clash game.
  * 
- * @version 06/30/2024
+ * @version 07/14/2024
  * @author Savitha Venkatesh
  */
 public class TestCard {

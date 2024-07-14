@@ -4,7 +4,7 @@ package edu.westga.cs6910.elementalclash.model;
  * HumanPlayer represents a human-controlled player in the Elemental Clash game.
  * It extends the AbstractPlayer class and inherits its functionality.
  * 
- * @version 06/23/2024
+ * @version 07/14/2024
  * @author Savitha Venkatesh
  */
 public class HumanPlayer extends AbstractPlayer {

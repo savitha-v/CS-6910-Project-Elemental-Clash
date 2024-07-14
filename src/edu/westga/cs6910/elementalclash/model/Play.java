@@ -6,7 +6,7 @@ import java.util.List;
  * Play defines the behaviors that a player in the Elemental Clash game must
  * implement.
  * 
- * @version 07/07/2024
+ * @version 07/14/2024
  * @author Savitha Venkatesh
  */
 public interface Play {

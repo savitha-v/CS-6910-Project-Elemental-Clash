@@ -10,7 +10,7 @@ import java.io.Serializable;
  * Each card has a rank (common, rare, legendary) and a suit (fire, earth, air,
  * water).
  * 
- * @version 06/30/2024
+ * @version 07/14/2024
  * @author Savitha Venkatesh
  */
 public class Card implements Serializable {

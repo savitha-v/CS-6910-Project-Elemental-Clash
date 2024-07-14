@@ -13,7 +13,7 @@ import edu.westga.cs6910.elementalclash.model.HumanPlayer;
  * 
  * Tests the functionality of the HumanPlayer class in the Elemental Clash game.
  * 
- * @version 06/23/2024
+ * @version 07/14/2024
  * @author Savitha Venkatesh
  */
 public class TestHumanPlayer {

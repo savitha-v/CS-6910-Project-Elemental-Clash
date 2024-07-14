@@ -5,7 +5,7 @@ package edu.westga.cs6910.elementalclash.model;
  * 
  * Represents the rank of a card in the Elemental Clash game.
  * 
- * @version 07/07/2024
+ * @version 07/14/2024
  * @author Savitha Venkatesh
  */
 public enum Rank {

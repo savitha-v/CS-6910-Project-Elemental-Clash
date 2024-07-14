@@ -25,7 +25,7 @@ import java.util.List;
  * Elemental Clash game. It manages the game's state and provides methods for
  * the view to interact with the game.
  * 
- * @version 07/07/2024
+ * @version 07/14/2024
  * @author Savitha Venkatesh
  */
 public class ViewModel {

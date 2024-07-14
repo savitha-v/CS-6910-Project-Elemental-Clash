@@ -5,7 +5,7 @@ package edu.westga.cs6910.elementalclash.model;
  * 
  * Represents the suit of a card in the Elemental Clash game.
  * 
- * @version 06/23/2024
+ * @version 07/14/2024
  * @author Savitha Venkatesh
  */
 public enum Suit {

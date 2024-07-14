@@ -16,7 +16,7 @@ import java.io.IOException;
 /**
  * The class ViewCard.
  * 
- * @version 06/23/2024
+ * @version 07/14/2024
  * @author Savitha Venkatesh
  */
 public class ViewCard {

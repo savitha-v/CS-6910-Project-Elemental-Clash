@@ -11,7 +11,7 @@ import javafx.stage.Stage;
  * ElementalClashApplication extends the JavaFX Application class to build the
  * GUI and start program execution.
  * 
- * @version 06/30/2024
+ * @version 07/14/2024
  * @author Savitha Venkatesh
  */
 public class ElementalClashApplication extends Application {

@@ -22,7 +22,7 @@ import edu.westga.cs6910.elementalclash.model.Rank;
  * 
  * Tests the functionality of the Game class in the Elemental Clash game.
  * 
- * @version 07/07/2024
+ * @version 07/14/2024
  * @author Savitha Venkatesh
  */
 public class TestGame {
