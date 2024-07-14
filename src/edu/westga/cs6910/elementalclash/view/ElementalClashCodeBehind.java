@@ -5,11 +5,16 @@ import edu.westga.cs6910.elementalclash.viewmodel.ViewCard;
 import edu.westga.cs6910.elementalclash.viewmodel.ViewModel;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.layout.*;
-import javafx.scene.image.Image;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import java.util.List;
 
@@ -17,7 +22,7 @@ import java.util.List;
  * ElementalClashCodeBehind defines the "controller" for ElementalClash.fxml.
  * 
  * @version 06/30/2024
- * author Savitha Venkatesh
+ * @author Savitha Venkatesh
  */
 public class ElementalClashCodeBehind {
     
@@ -87,7 +92,7 @@ public class ElementalClashCodeBehind {
         AnchorPane backgroundPane = new AnchorPane();
         
         // Load the background image
-        Image backgroundImage = new Image("file:images/background.jpg"); // Ensure you provide the correct path
+        Image backgroundImage = new Image("file:images/background.jpg"); 
         ImageView backgroundImageView = new ImageView(backgroundImage);
         backgroundImageView.setPreserveRatio(false);
 
@@ -98,7 +103,7 @@ public class ElementalClashCodeBehind {
         // Create a translucent white overlay pane
         Pane overlayPane = new Pane();
         overlayPane.setBackground(new Background(new BackgroundFill(
-            Color.rgb(255, 255, 255, 0.5), // Adjust the opacity as needed
+            Color.rgb(255, 255, 255, 0.5), 
             CornerRadii.EMPTY,
             Insets.EMPTY
         )));
@@ -111,7 +116,7 @@ public class ElementalClashCodeBehind {
         backgroundPane.getChildren().addAll(backgroundImageView, overlayPane);
 
         // Add the backgroundPane to the main pane
-        this.pane.getChildren().add(0, backgroundPane); // Add at index 0 to ensure it is underneath other elements
+        this.pane.getChildren().add(0, backgroundPane); 
     }
 
     /**
