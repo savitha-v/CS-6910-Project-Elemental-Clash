@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,7 +24,6 @@ import java.util.List;
  * ElementalClashCodeBehind defines the "controller" for ElementalClash.fxml.
  * 
  * @version 07/14/2024
- * @author Savitha Venkatesh
  */
 public class ElementalClashCodeBehind {
     
@@ -56,6 +56,9 @@ public class ElementalClashCodeBehind {
 
     @FXML
     private Label computerLifePointsLabel;
+
+    @FXML
+    private MenuItem restartRoundMenuItem;
 
     /**
      * Instantiates a new ElementalClashCodeBehind.
@@ -129,6 +132,8 @@ public class ElementalClashCodeBehind {
         this.humanLifePointsLabel.textProperty().bind(this.viewModel.humanLifePointsProperty().asString());
         this.computerWinsLabel.textProperty().bind(this.viewModel.computerWinsProperty().asString());
         this.computerLifePointsLabel.textProperty().bind(this.viewModel.computerLifePointsProperty().asString());
+
+        this.restartRoundMenuItem.disableProperty().bind(this.viewModel.roundPlayedProperty().not());
     }
 
     /**
@@ -190,7 +195,7 @@ public class ElementalClashCodeBehind {
      */
     @FXML
     private void handleRestartRound() {
-        this.showAlert("Restart Round", "Restarts the current round, resetting hands and life points to their previous state. Restarting a new round prior to playing atleast one round results in no action.");
+        this.showAlert("Restart Round", "Restarts the current round, resetting hands and life points to their previous state.");
         this.viewModel.restartRound();
         this.displayCards();
     }

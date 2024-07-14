@@ -8,7 +8,9 @@ import edu.westga.cs6910.elementalclash.model.Game;
 import edu.westga.cs6910.elementalclash.model.HumanPlayer;
 import edu.westga.cs6910.elementalclash.model.Play;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -26,7 +28,7 @@ import java.util.List;
  * the view to interact with the game.
  * 
  * @version 07/14/2024
- * @author Savitha Venkatesh
+ * author Savitha Venkatesh
  */
 public class ViewModel {
     private Game game;
@@ -35,6 +37,7 @@ public class ViewModel {
     private IntegerProperty computerWins;
     private IntegerProperty humanLifePoints;
     private IntegerProperty computerLifePoints;
+    private BooleanProperty roundPlayed;
 
     /**
      * Constructs a new ViewModel and initializes the game.
@@ -50,6 +53,7 @@ public class ViewModel {
         this.computerWins = new SimpleIntegerProperty();
         this.humanLifePoints = new SimpleIntegerProperty();
         this.computerLifePoints = new SimpleIntegerProperty();
+        this.roundPlayed = new SimpleBooleanProperty(false);
         this.updateLifePoints();
     }
 
@@ -64,6 +68,7 @@ public class ViewModel {
         this.updateWins();
         this.updateLifePoints();
         this.roundResult.set("");
+        this.roundPlayed.set(false);
     }
 
     /**
@@ -78,6 +83,7 @@ public class ViewModel {
             this.roundResult.set(this.game.getLastRoundResult());
             this.updateWins();
             this.updateLifePoints();
+            this.roundPlayed.set(true);
         } catch (IllegalStateException illegalException) {
             this.roundResult.set("Deck is empty, refilling...");
             this.game.getDeck().refillDeck();
@@ -93,6 +99,15 @@ public class ViewModel {
         this.updateWins();
         this.updateLifePoints();
         this.roundResult.set(this.game.getLastRoundResult());
+    }
+
+    /**
+     * Checks if the game can restart the round.
+     * 
+     * @return true if the round can be restarted, false otherwise
+     */
+    public BooleanProperty roundPlayedProperty() {
+        return this.roundPlayed;
     }
     
     /**
@@ -189,6 +204,7 @@ public class ViewModel {
         this.updateWins();
         this.updateLifePoints();
         this.roundResult.set("");
+        this.roundPlayed.set(false);
     }
 
     /**

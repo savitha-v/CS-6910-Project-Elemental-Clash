@@ -21,7 +21,7 @@
                 <Menu mnemonicParsing="false" text="Game Menu">
                     <items>
                         <MenuItem mnemonicParsing="false" text="New Game" onAction="#handleNewGame" />
-                        <MenuItem mnemonicParsing="false" text="Restart Round" onAction="#handleRestartRound" />
+                        <MenuItem fx:id="restartRoundMenuItem" mnemonicParsing="false" text="Restart Round" onAction="#handleRestartRound" disable="true"/>
                         <MenuItem mnemonicParsing="false" text="Save Game" onAction="#handleSaveGame" />
                         <MenuItem mnemonicParsing="false" text="Load Game" onAction="#handleLoadGame" />
                     </items>
