@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -22,7 +24,6 @@ import java.util.List;
  * ElementalClashCodeBehind defines the "controller" for ElementalClash.fxml.
  * 
  * @version 06/30/2024
- * @author Savitha Venkatesh
  */
 public class ElementalClashCodeBehind {
     
@@ -189,6 +190,7 @@ public class ElementalClashCodeBehind {
      */
     @FXML
     private void handleRestartRound() {
+        this.showAlert("Restart Round", "Restarts the current round, resetting hands and life points to their previous state. Restarting a new round prior to playing atleast one round results in no action.");
         this.viewModel.restartRound();
         this.displayCards();
     }
@@ -201,6 +203,7 @@ public class ElementalClashCodeBehind {
      */
     @FXML
     private void handleNewGame() {
+        this.showAlert("New Game", "Starts a new game, resetting all scores and life points.");
         this.viewModel.newGame();
         this.displayCards();
     }
@@ -213,6 +216,7 @@ public class ElementalClashCodeBehind {
      */
     @FXML
     private void handleSaveGame() {
+        this.showAlert("Save Game", "Saves the current state of the game, including scores, life points, and card positions.");
         this.viewModel.saveGame();
     }
 
@@ -224,7 +228,60 @@ public class ElementalClashCodeBehind {
      */
     @FXML
     private void handleLoadGame() {
+        this.showAlert("Load Game", "Loads a previously saved game state, restoring scores, life points, and card positions.");
         this.viewModel.loadGame();
         this.displayCards();
+    }
+    
+    /**
+     * Handles the display of game objectives.
+     * 
+     * @precondition none
+     * @postcondition the objectives are displayed in an alert
+     */
+    @FXML
+    private void handleObjectives() {
+        this.showAlert("Game Objectives", "Objectives:\nThe primary objective of Elemental Clash is to reduce your opponent's life points to zero by playing elemental cards strategically. Players must balance offense and defense, taking advantage of elemental strengths and weaknesses to outsmart their opponent.");
+    }
+
+    /**
+     * Handles the display of game rules.
+     * 
+     * @precondition none
+     * @postcondition the rules are displayed in an alert
+     */
+    @FXML
+    private void handleRules() {
+        this.showAlert("Game Rules", "Rules:\n- Each player starts with 20 life points.\n- Players draw five cards from their deck at the beginning of the game.\n- Each turn, a player can draw one card and play one elemental card.\n- Elemental cards have different strengths and weaknesses:\n  Fire beats Air\n  Air beats Earth\n  Earth beats Water\n  Water beats Fire\n- If an elemental card beats the opponent's card, the opponent loses life points equal to the winning card's power.\n- The game continues until one player’s life points reach zero.");
+    }
+
+    /**
+     * Handles the display of game scoring.
+     * 
+     * @precondition none
+     * @postcondition the scoring is displayed in an alert
+     */
+    @FXML
+    private void handleScoring() {
+        this.showAlert("Game Scoring", "Scoring:\nEach card has a power level indicated on it. When a card wins a clash, the opponent loses life points equal to the power level of the winning card. For example, if a Fire card with a power of 3 beats an Air card, the opponent loses 3 life points.");
+    }
+
+    /**
+     * Displays an alert with the specified title and content.
+     * 
+     * @param title the title of the alert
+     * @param content the content of the alert
+     */
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        
+        TextArea textArea = new TextArea(content);
+        textArea.setWrapText(true);
+        textArea.setEditable(false);
+        
+        alert.getDialogPane().setContent(textArea);
+        alert.showAndWait();
     }
 }
