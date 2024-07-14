@@ -31,7 +31,7 @@
         <HBox layoutX="10.0" layoutY="40.0" spacing="20.0">
             <VBox spacing="20.0" alignment="CENTER">
                 <VBox spacing="10.0" alignment="CENTER">
-                    <Label text="Human's Front of Cards" />
+                    <Label text="Human's Front of Cards" style="-fx-font-weight: bold;"/>
                     <ScrollPane prefHeight="200.0" prefWidth="1200.0">
                         <HBox fx:id="humanTableFront" alignment="CENTER_LEFT" spacing="10.0">
                             <effect>
@@ -44,7 +44,7 @@
                     </ScrollPane>
                 </VBox>
                 <VBox spacing="10.0" alignment="CENTER">
-                    <Label text="Computer's Front of Cards" />
+                    <Label text="Computer's Front of Cards" style="-fx-font-weight: bold;"/>
                     <ScrollPane prefHeight="200.0" prefWidth="1200.0">
                         <HBox fx:id="computerTableFront" alignment="CENTER_LEFT" spacing="10.0">
                             <effect>
@@ -59,7 +59,7 @@
             </VBox>
             <VBox spacing="20.0" alignment="CENTER_RIGHT" prefWidth="230.0">
                 <VBox spacing="10.0" alignment="CENTER">
-                    <Label text="Back of Card" />
+                    <Label text="Back of Card" style="-fx-font-weight: bold;"/>
                     <HBox style="-fx-background-color: #f0f0f0">
                         <ImageView fx:id="backOfCardImageView" fitWidth="220.0" fitHeight="340.0" />
                         <effect>
@@ -73,18 +73,18 @@
             </VBox>
         </HBox>
         <VBox layoutX="10.0" layoutY="550.0" spacing="20.0">
-            <Label fx:id="roundResultLabel" text="Round Result" />
+            <Label fx:id="roundResultLabel" text="Round Result" style="-fx-font-weight: bold;"/>
             <HBox spacing="20.0">
-                <Label text="Human Wins: " />
-                <Label fx:id="humanWinsLabel" text="0" />
-                <Label text="Computer Wins: " />
-                <Label fx:id="computerWinsLabel" text="0" />
-                <Label text="Human Life Points: " />
-                <Label fx:id="humanLifePointsLabel" text="20" />
-                <Label text="Computer Life Points: " />
-                <Label fx:id="computerLifePointsLabel" text="20" />
+                <Label text="Human Wins: " style="-fx-font-weight: bold;"/>
+                <Label fx:id="humanWinsLabel" text="0" style="-fx-font-weight: bold;"/>
+                <Label text="Computer Wins: " style="-fx-font-weight: bold;"/>
+                <Label fx:id="computerWinsLabel" text="0" style="-fx-font-weight: bold;"/>
+                <Label text="Human Life Points: " style="-fx-font-weight: bold;"/>
+                <Label fx:id="humanLifePointsLabel" text="20" style="-fx-font-weight: bold;"/>
+                <Label text="Computer Life Points: " style="-fx-font-weight: bold;"/>
+                <Label fx:id="computerLifePointsLabel" text="20" style="-fx-font-weight: bold;"/>
             </HBox>
-            <Button text="Play Round" onAction="#handlePlayRound" />
+            <Button text="Play Round" onAction="#handlePlayRound" style="-fx-font-weight: bold;"/>
         </VBox>
     </children>
 </AnchorPane>

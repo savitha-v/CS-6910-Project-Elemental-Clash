@@ -88,7 +88,6 @@ public abstract class AbstractPlayer implements Play, Serializable {
             }
         }
 
-        // Note: Do not remove the bestCard from hand here
         return bestCard;
     }
 
