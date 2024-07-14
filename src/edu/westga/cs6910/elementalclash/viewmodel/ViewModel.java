@@ -28,7 +28,7 @@ import java.util.List;
  * the view to interact with the game.
  * 
  * @version 07/14/2024
- * author Savitha Venkatesh
+ * @author Savitha Venkatesh
  */
 public class ViewModel {
     private Game game;
