@@ -45,55 +45,6 @@ public class ViewCard {
 	}
 
 	/**
-	 * Returns a card face down.
-	 * 
-	 * @precondition card != null
-	 * @postcondition none
-	 * @param card the card to create a visual representation for
-	 * @return the card face down
-	 */
-	public Node faceDown(Card card) {
-		if (card == null) {
-			throw new IllegalArgumentException(ExceptionMessages.NULL_CARD);
-		}
-		this.card = card;
-		return this.designBackOfCard();
-	}
-
-	/**
-	 * Designs the back of the card.
-	 * 
-	 * @precondition none
-	 * @postcondition none
-	 * @return the back of the card
-	 */
-	private Node designBackOfCard() {
-		Pane pane = new Pane();
-		Shape shape = this.drawRectangle();
-
-		FileInputStream input = null;
-		try {
-			input = new FileInputStream(CARD_BACK_IMAGE);
-			Image image = new Image(input);
-			ImagePattern pattern = new ImagePattern(image);
-			shape.setFill(pattern);
-			pane.getChildren().add(shape);
-		} catch (FileNotFoundException ex) {
-			System.err.println("Image file not found: " + CARD_BACK_IMAGE);
-		} finally {
-			if (input != null) {
-				try {
-					input.close();
-				} catch (IOException ex) {
-					System.err.println("Error closing file input stream.");
-				}
-			}
-		}
-
-		return pane;
-	}
-
-	/**
 	 * Designs the front of the card.
 	 * 
 	 * @precondition none
@@ -128,6 +79,32 @@ public class ViewCard {
 
 		return pane;
 	}
+	
+    /**
+     * Gets the back of card image as an Image object.
+     * 
+     * @precondition none
+     * @postcondition the Image object for the back of card is returned
+     * @return the Image object for the back of the card
+     */
+    public Image getBackOfCardImage() {
+        FileInputStream input = null;
+        try {
+            input = new FileInputStream(CARD_BACK_IMAGE);
+            return new Image(input);
+        } catch (FileNotFoundException ex) {
+            System.err.println("Image file not found: " + CARD_BACK_IMAGE);
+            return null;
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException ex) {
+                    System.err.println("Error closing file input stream.");
+                }
+            }
+        }
+    }
 
 	/**
 	 * Draws a rectangle with predefined properties.

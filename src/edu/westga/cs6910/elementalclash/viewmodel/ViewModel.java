@@ -94,6 +94,18 @@ public class ViewModel {
         this.updateLifePoints();
         this.roundResult.set(this.game.getLastRoundResult());
     }
+    
+    /**
+     * Starts new game
+     * 
+     * @precondition none
+     * @postcondition the game is restarted with new hands
+     */
+    public void newGame() {
+        Deck deck = new Deck();
+        this.game = new Game(new HumanPlayer("Human", deck), new ComputerPlayer("Computer", deck), deck);
+        this.startGame();
+    }
 
     /**
      * Updates the win counts for each player.

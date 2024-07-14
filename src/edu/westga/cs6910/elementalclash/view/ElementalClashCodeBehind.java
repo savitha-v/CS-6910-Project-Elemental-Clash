@@ -5,27 +5,22 @@ import edu.westga.cs6910.elementalclash.viewmodel.ViewCard;
 import edu.westga.cs6910.elementalclash.viewmodel.ViewModel;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.layout.*;
+import javafx.scene.image.Image;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-
 import java.util.List;
 
 /**
  * ElementalClashCodeBehind defines the "controller" for ElementalClash.fxml.
  * 
  * @version 06/30/2024
- * @author Savitha Venkatesh
+ * author Savitha Venkatesh
  */
 public class ElementalClashCodeBehind {
-
-    private static final Color ELEMENTAL_CLASH_TABLE_BACKGROUND = Color.GREEN.deriveColor(1, 1, 1, 0.8);
-
+    
     private ViewCard viewCard;
     private ViewModel viewModel;
 
@@ -37,12 +32,9 @@ public class ElementalClashCodeBehind {
 
     @FXML
     private HBox computerTableFront;
-
+    
     @FXML
-    private HBox humanTableBack;
-
-    @FXML
-    private HBox computerTableBack;
+    private ImageView backOfCardImageView;
 
     @FXML
     private Label roundResultLabel;
@@ -91,9 +83,35 @@ public class ElementalClashCodeBehind {
      * @postcondition none
      */
     private void initializeUI() {
-        BackgroundFill fill = new BackgroundFill(ELEMENTAL_CLASH_TABLE_BACKGROUND, CornerRadii.EMPTY, Insets.EMPTY);
-        Background background = new Background(fill);
-        this.pane.setBackground(background);
+        // Create a separate AnchorPane for the background
+        AnchorPane backgroundPane = new AnchorPane();
+        
+        // Load the background image
+        Image backgroundImage = new Image("file:images/background.jpg"); // Ensure you provide the correct path
+        ImageView backgroundImageView = new ImageView(backgroundImage);
+        backgroundImageView.setPreserveRatio(false);
+
+        // Bind the size of the background image view to the size of the main pane
+        backgroundImageView.fitWidthProperty().bind(this.pane.widthProperty());
+        backgroundImageView.fitHeightProperty().bind(this.pane.heightProperty());
+
+        // Create a translucent white overlay pane
+        Pane overlayPane = new Pane();
+        overlayPane.setBackground(new Background(new BackgroundFill(
+            Color.rgb(255, 255, 255, 0.5), // Adjust the opacity as needed
+            CornerRadii.EMPTY,
+            Insets.EMPTY
+        )));
+
+        // Bind the size of the overlay pane to the size of the main pane
+        overlayPane.prefWidthProperty().bind(this.pane.widthProperty());
+        overlayPane.prefHeightProperty().bind(this.pane.heightProperty());
+
+        // Add the background image and overlay pane to the backgroundPane
+        backgroundPane.getChildren().addAll(backgroundImageView, overlayPane);
+
+        // Add the backgroundPane to the main pane
+        this.pane.getChildren().add(0, backgroundPane); // Add at index 0 to ensure it is underneath other elements
     }
 
     /**
@@ -116,20 +134,23 @@ public class ElementalClashCodeBehind {
     private void displayCards() {
         this.humanTableFront.getChildren().clear();
         this.computerTableFront.getChildren().clear();
-        this.humanTableBack.getChildren().clear();
-        this.computerTableBack.getChildren().clear();
 
         List<Card> humanHand = this.viewModel.getHumanHand();
         List<Card> computerHand = this.viewModel.getComputerHand();
 
         for (Card card : humanHand) {
             this.humanTableFront.getChildren().add(this.viewCard.faceUp(card));
-            this.humanTableBack.getChildren().add(this.viewCard.faceDown(card));
         }
 
         for (Card card : computerHand) {
             this.computerTableFront.getChildren().add(this.viewCard.faceUp(card));
-            this.computerTableBack.getChildren().add(this.viewCard.faceDown(card));
+        }
+        
+        Image backOfCardImage = this.viewCard.getBackOfCardImage();
+        if (backOfCardImage != null) {
+            this.backOfCardImageView.setImage(backOfCardImage);
+            this.backOfCardImageView.setFitWidth(220.0);
+            this.backOfCardImageView.setFitHeight(340.0);
         }
     }
 
@@ -164,6 +185,18 @@ public class ElementalClashCodeBehind {
     @FXML
     private void handleRestartRound() {
         this.viewModel.restartRound();
+        this.displayCards();
+    }
+    
+    /**
+     * Handles the new game action.
+     * 
+     * @precondition none
+     * @postcondition the game is restarted
+     */
+    @FXML
+    private void handleNewGame() {
+        this.viewModel.newGame();
         this.displayCards();
     }
 
